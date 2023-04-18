@@ -1,13 +1,18 @@
 import pygame
 
 pygame.init()
-screen = pygame.display.set_mode((600,300)) #размеры экрана через кортеж (ширина,высота)
+screen = pygame.display.set_mode((1000, 625)) #размеры экрана через кортеж (ширина,высота)
 pygame.display.set_caption("Jumping_Luna")
 icon = pygame.image.load('images/icon.png')
 pygame.display.set_icon(icon)
 
+bg = pygame.image.load('images/background.jpg')
+
 running = True
 while running: #запуск бесконечного цикла игры до нажатия кнопки закрыть окно
+
+
+    screen.blit(bg, (0,0))
 
     pygame.display.update()
 
@@ -15,4 +20,5 @@ while running: #запуск бесконечного цикла игры до �
         if event.type == pygame.QUIT:
             running = False
             pygame.quit()
+
 
