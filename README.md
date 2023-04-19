@@ -40,4 +40,4 @@
 
 ### Условная архитектура проекта
 
-![Рис. 1 - Условная архитектура игры](./for%readme/scheme_for_platformer.png)  
+![Рис. 1 - Условная архитектура игры](./for%20readme/scheme_for_platformer.png)  
