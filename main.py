@@ -26,6 +26,12 @@ bg_x = 0 #для смещения фона (две одинаковых карт
 hero_speed = 5
 hero_x = 300
 hero_y = 200
+
+move_police = True #переменная отслеживания последней стороны движения пользователя
+
+is_jump = False
+jump_count = 7
+
 bg_sound = pygame.mixer.Sound('sounds/background.mp3')
 bg_sound.play()
 
@@ -48,16 +54,40 @@ while running: #запуск бесконечного цикла игры до �
     #переменная, содержащая действия пользователя
     keys = pygame.key.get_pressed()
 
+    #условие на сохранение анимации в сторону, в которую до этого ходил пользователь
+    if move_police:
+        screen.blit(move_right[hero_anim_counter], (hero_x, hero_y))
+    else:
+        screen.blit(move_left[hero_anim_counter], (hero_x, hero_y))
+
     if keys[pygame.K_LEFT]:
         screen.blit(move_left[hero_anim_counter], (hero_x, hero_y))
-    else:
+        move_police = False
+    elif keys[pygame.K_RIGHT]:
         screen.blit(move_right[hero_anim_counter], (hero_x, hero_y))
+        move_police = True
 
     # отслживание действий пользователя, чтобы изменять положение героя
     if keys[pygame.K_LEFT] and hero_x > 50:
         hero_x -= hero_speed
     elif keys[pygame.K_RIGHT] and hero_x < 400:
         hero_x += hero_speed
+
+    #если не прыжок проверяем на нажатие пользователем клавши "пробел"
+    if not is_jump:
+        if keys[pygame.K_SPACE]:
+            is_jump = True
+    else:
+        if jump_count >= -7:
+            if jump_count > 0:
+                hero_y -= (jump_count ** 2) / 2
+            else:
+                hero_y += (jump_count ** 2) / 2
+            jump_count -= 1
+        else:
+            is_jump = False
+            jump_count = 7
+
 
     if hero_anim_counter == 2:
         hero_anim_counter = 0
