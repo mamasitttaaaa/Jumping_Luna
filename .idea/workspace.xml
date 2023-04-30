@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="742a7623-51f1-4231-b5f7-7da628e7d103" name="Changes" comment="New rules for hero animation (anim only if right/left keys pressed">
+    <list default="true" id="742a7623-51f1-4231-b5f7-7da628e7d103" name="Changes" comment="Clear from unuseful comments and code">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -159,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682858407581</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Clear from unuseful comments and code">
+      <created>1682858965563</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1682858965563</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -184,6 +192,7 @@
     <MESSAGE value="Added more needed files" />
     <MESSAGE value="Fixed connection between hero and background" />
     <MESSAGE value="New rules for hero animation (anim only if right/left keys pressed" />
-    <option name="LAST_COMMIT_MESSAGE" value="New rules for hero animation (anim only if right/left keys pressed" />
+    <MESSAGE value="Clear from unuseful comments and code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clear from unuseful comments and code" />
   </component>
 </project>

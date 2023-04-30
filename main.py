@@ -2,8 +2,11 @@ import pygame
 
 clock = pygame.time.Clock()
 
+scr_a = 600
+scr_b = 300
+
 pygame.init()
-screen = pygame.display.set_mode((600, 300))  # размеры экрана через кортеж (ширина,высота)
+screen = pygame.display.set_mode((scr_a, scr_b))  # размеры экрана через кортеж (ширина,высота)
 pygame.display.set_caption("Jumping_Luna")
 icon = pygame.image.load('images/icon.png')
 pygame.display.set_icon(icon)
@@ -24,7 +27,7 @@ hero_anim_counter = 0  # счетчик анимаций для цикла, чт
 bg_x = 0  # для смещения фона (две одинаковых картинки идут друг за другом)
 # параметры положения игрока и его движения
 hero_speed = 5
-hero_x = 0
+hero_x = 30
 hero_y = 200
 bg_control = 0
 bg_max = 4 #максимальное колличество итераций фона на уровне
@@ -50,7 +53,7 @@ while running:  # запуск бесконечного цикла игры до
 
 
     screen.blit(bg, (bg_x, 0))
-    screen.blit(bg, (bg_x + 600, 0))
+    screen.blit(bg, (bg_x + scr_a, 0))
 
     # переменная, содержащая действия пользователя
     keys = pygame.key.get_pressed()
@@ -67,12 +70,12 @@ while running:  # запуск бесконечного цикла игры до
     # ограничениями является начало первой картинки, а концом - конец последней, так что движение будет заблокировано
     if keys[pygame.K_LEFT]:
         screen.blit(move_left[hero_anim_counter], (hero_x, hero_y))
-        if hero_x > 10:
+        if hero_x > 30:
             hero_x -= hero_speed
         else:
             if bg_x == 0:
                 bg_control -= 1
-            if bg_x >= 600:
+            if bg_x >= scr_a:
                 bg_x = 0
                 bg_control -= 1
             elif bg_control > 0:
@@ -80,12 +83,12 @@ while running:  # запуск бесконечного цикла игры до
 
     elif keys[pygame.K_RIGHT]:
         screen.blit(move_right[hero_anim_counter], (hero_x, hero_y))
-        if hero_x < 560:
+        if hero_x < (scr_a - 70):
             hero_x += hero_speed
         else:
             if bg_x == 0:
                 bg_control += 1
-            if bg_x <= -600:
+            if bg_x <= -scr_a:
                 bg_x = 0
                 bg_control += 1
             elif bg_control <= bg_max:
