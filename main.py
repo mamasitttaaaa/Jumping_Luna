@@ -24,8 +24,10 @@ hero_anim_counter = 0  # счетчик анимаций для цикла, чт
 bg_x = 0  # для смещения фона (две одинаковых картинки идут друг за другом)
 # параметры положения игрока и его движения
 hero_speed = 5
-hero_x = 300
+hero_x = 0
 hero_y = 200
+bg_control = 0
+bg_max = 4 #максимальное колличество итераций фона на уровне
 
 move_police = True  # переменная отслеживания последней стороны движения пользователя
 
@@ -48,6 +50,7 @@ while running:  # запуск бесконечного цикла игры до
             # безошибочный вариант
             break
 
+    # screen.blit(bg, (bg_x - 600, 0))
     screen.blit(bg, (bg_x, 0))
     screen.blit(bg, (bg_x + 600, 0))
 
@@ -67,15 +70,42 @@ while running:  # запуск бесконечного цикла игры до
         screen.blit(move_right[hero_anim_counter], (hero_x, hero_y))
         move_police = True
 
-    # отслживание действий пользователя, чтобы изменять положение героя
-    if keys[pygame.K_LEFT] and hero_x > 50:
-        hero_x -= hero_speed
-    elif keys[pygame.K_RIGHT] and hero_x < 400:
-        hero_x += hero_speed
+    # # отслживание действий пользователя, чтобы изменять положение героя
+    # if keys[pygame.K_LEFT] and hero_x > 50:
+    #     hero_x -= hero_speed
+    # elif keys[pygame.K_RIGHT] and hero_x < 400:
+    #     hero_x += hero_speed
+
+    # отслживание действий пользователя, чтобы изменять положение героя и фона
+    # если герой подходит к краю картинки, то фон сдвигается при нажатии кнопоки управления движением в соответствующую сторону
+    # ограничениями является начало первой картинки, а концом - конец последней, так что движение будет заблокировано
+    if keys[pygame.K_LEFT]:
+        if hero_x > 10:
+            hero_x -= hero_speed
+        else:
+            if bg_x == 0:
+                bg_control -= 1
+            if bg_x >= 600:
+                bg_x == 0
+                bg_control -= 1
+            elif bg_control > 0:
+                bg_x += hero_speed
+
+    elif keys[pygame.K_RIGHT]:
+        if hero_x < 560:
+            hero_x += hero_speed
+        else:
+            if bg_x == 0:
+                bg_control += 1
+            if bg_x <= -600:
+                bg_x = 0
+                bg_control += 1
+            elif bg_control <= bg_max:
+                bg_x -= hero_speed
 
     # если не прыжок проверяем на нажатие пользователем клавши "пробел"
     if not is_jump:
-        if keys[pygame.K_SPACE]:
+        if keys[pygame.K_SPACE] or keys[pygame.K_UP]:
             is_jump = True
     else:
         if jump_count >= -7:
@@ -93,9 +123,9 @@ while running:  # запуск бесконечного цикла игры до
     else:
         hero_anim_counter += 1
 
-    bg_x -= 2  # отвечает за сдвиг фона по координатам при каждой итерации цикла
-    if bg_x == -600:
-        bg_x = 0
-    # pygame.display.update()
+    # bg_x -= 2  # отвечает за сдвиг фона по координатам при каждой итерации цикла
+    # if bg_x == -600:
+    #     bg_x = 0
+    # # pygame.display.update()
 
     clock.tick(10)  # задержка перед новой итерацией цикла (медленное переключение анимаций персонажа и медленная прокрутка фона)
