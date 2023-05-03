@@ -26,11 +26,11 @@ move_right = [
 hero_anim_counter = 0  # счетчик анимаций для цикла, чтобы показывать все картинки из списка беспрерывно
 bg_x = 0  # для смещения фона (две одинаковых картинки идут друг за другом)
 # параметры положения игрока и его движения
-hero_speed = 5
+hero_speed = 10
 hero_x = 30
 hero_y = 200
 bg_control = 0
-bg_max = 4 #максимальное колличество итераций фона на уровне
+bg_max = 5  #максимальное колличество итераций фона на уровне
 
 is_jump = False
 jump_count = 7
@@ -51,7 +51,7 @@ while running:  # запуск бесконечного цикла игры до
             # безошибочный вариант
             break
 
-
+    screen.blit(bg, (bg_x - scr_a, 0))
     screen.blit(bg, (bg_x, 0))
     screen.blit(bg, (bg_x + scr_a, 0))
 
@@ -69,11 +69,12 @@ while running:  # запуск бесконечного цикла игры до
     # если герой подходит к краю картинки, то фон сдвигается при нажатии кнопоки управления движением в соответствующую сторону
     # ограничениями является начало первой картинки, а концом - конец последней, так что движение будет заблокировано
     if keys[pygame.K_LEFT]:
+        print(bg_x)
         screen.blit(move_left[hero_anim_counter], (hero_x, hero_y))
         if hero_x > 30:
             hero_x -= hero_speed
         else:
-            if bg_x == 0:
+            if bg_x == 0 and bg_control > 0:
                 bg_control -= 1
             if bg_x >= scr_a:
                 bg_x = 0
@@ -86,7 +87,7 @@ while running:  # запуск бесконечного цикла игры до
         if hero_x < (scr_a - 70):
             hero_x += hero_speed
         else:
-            if bg_x == 0:
+            if bg_x == 0 and bg_control <= bg_max:
                 bg_control += 1
             if bg_x <= -scr_a:
                 bg_x = 0
