@@ -58,8 +58,8 @@ ghost_timer = pygame.USEREVENT + 1
 pygame.time.set_timer(ghost_timer, 5000)
 
 label = pygame.font.Font('fonts/beer-money12.ttf', 50)
-lose_label = label.render('GAME OVER!!!', False,(255, 43, 43))
-restart_label = label.render('Revive', False,(245, 245, 245))
+lose_label = label.render('GAME OVER!!!', False, (255, 43, 43))
+restart_label = label.render('Revive', False, (245, 245, 245))
 restart_rect = restart_label.get_rect(topleft=(100, 100))
 
 bullets_stock = 6  # запас выстрелов на уровень
@@ -99,7 +99,7 @@ while running:  # запуск бесконечного цикла игры до
         if ghost_list:
             for (index, elem) in enumerate(ghost_list):
                 screen.blit(ghost, elem)
-                elem.x -= 10
+                elem.x -= 6
 
                 if elem.x < -10:
                     ghost_list.pop(index)
@@ -169,7 +169,7 @@ while running:  # запуск бесконечного цикла игры до
         if bullets:
             for (i, weap) in enumerate (bullets):
                 screen.blit(bullet, (weap.x, weap.y))
-                weap.x += 4
+                weap.x += 10
                 if weap.x > 620:
                     bullets.pop(index)
 
@@ -195,4 +195,4 @@ while running:  # запуск бесконечного цикла игры до
             pygame.display.update()
 
 
-    clock.tick(20)  # задержка перед новой итерацией цикла (медленное переключение анимаций персонажа и медленная прокрутка фона)
+    clock.tick(20)  # задержка перед новой итерацией цикла (переключение анимаций персонажа и прокрутка фона)
