@@ -35,6 +35,8 @@ move_right = [
 
 ghost = pygame.image.load('images/enemy_ghost.png').convert_alpha()
 ghost_list = []
+bullet = pygame.image.load('images/weapon.png').convert_alpha()
+bullets = []
 
 hero_anim_counter = 0  # счетчик анимаций для цикла, чтобы показывать все картинки из списка беспрерывно
 bg_x = 0  # для смещения фона (две одинаковых картинки идут друг за другом)
@@ -50,7 +52,6 @@ jump_count = 7
 
 bg_sound = pygame.mixer.Sound('sounds/background.mp3')
 bg_sound.play()
-
 losing_sound = pygame.mixer.Sound('sounds/sound_for_losing.mp3')
 
 ghost_timer = pygame.USEREVENT + 1
@@ -59,7 +60,9 @@ pygame.time.set_timer(ghost_timer, 5000)
 label = pygame.font.Font('fonts/beer-money12.ttf', 50)
 lose_label = label.render('GAME OVER!!!', False,(255, 43, 43))
 restart_label = label.render('Revive', False,(245, 245, 245))
-restart_rect = restart_label.get_rect(topleft = (100,100))
+restart_rect = restart_label.get_rect(topleft=(100, 100))
+
+bullets_stock = 6  # запас выстрелов на уровень
 
 gameplay = True
 
@@ -76,7 +79,11 @@ while running:  # запуск бесконечного цикла игры до
             # безошибочный вариант
         if event.type == ghost_timer:
             ghost_list.append(ghost.get_rect(topleft = (630, 200)))
-            break
+        if gameplay and event.type == pygame.KEYUP and event.key == pygame.K_c:
+            if bullets_stock > 0:
+                bullets.append(bullet.get_rect(topleft=(hero_x + 25, hero_y + 25)))
+                bullets_stock -= 1
+                break
 
     screen.blit(bg, (bg_x - scr_a, 0))
     screen.blit(bg, (bg_x, 0))
@@ -155,9 +162,26 @@ while running:  # запуск бесконечного цикла игры до
             else:
                 is_jump = False
                 jump_count = 7
+
+        # if keys[pygame.K_c]:
+        #     bullets.append(bullet.get_rect(topleft=(hero_x + 25, hero_y + 25)))
+
+        if bullets:
+            for (i, weap) in enumerate (bullets):
+                screen.blit(bullet, (weap.x, weap.y))
+                weap.x += 4
+                if weap.x > 620:
+                    bullets.pop(index)
+
+                if ghost_list:
+                    for (j, enemy) in enumerate (ghost_list):
+                        if weap.colliderect(enemy):
+                            ghost_list.pop(j)
+                            bullets.pop(i)
+
     else:
-        screen.fill((0,191,255))
-        screen.blit(lose_label, (300,150))
+        screen.fill((0, 191, 255))
+        screen.blit(lose_label, (300, 150))
         screen.blit(restart_label, restart_rect)
         losing_sound.play()
 
@@ -166,4 +190,9 @@ while running:  # запуск бесконечного цикла игры до
             gameplay = True
             hero_x = 30
             ghost_list.clear()
+            bullets.clear()
+            bullets_stock = 6
+            pygame.display.update()
+
+
     clock.tick(20)  # задержка перед новой итерацией цикла (медленное переключение анимаций персонажа и медленная прокрутка фона)
