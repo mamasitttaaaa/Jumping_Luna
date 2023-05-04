@@ -51,7 +51,7 @@ is_jump = False
 jump_count = 7
 
 bg_sound = pygame.mixer.Sound('sounds/background.mp3')
-bg_sound.play()
+# bg_sound.play()
 losing_sound = pygame.mixer.Sound('sounds/sound_for_losing.mp3')
 
 ghost_timer = pygame.USEREVENT + 1
@@ -70,7 +70,7 @@ running = True
 while running:  # запуск бесконечного цикла игры до нажатия кнопки закрыть окно
 
     pygame.display.update()
-
+    # bg_sound.play()
     for event in pygame.event.get():  # перебор всех событий в окне
         if event.type == pygame.QUIT:
             running = False
@@ -92,8 +92,8 @@ while running:  # запуск бесконечного цикла игры до
     #draw_grid()
 
     if gameplay:
-        screen.blit(platform, (70, 200))
-
+        # screen.blit(platform, (70, 200))
+        bg_sound.play()
         hero_rect = move_left[0].get_rect(topleft = (hero_x, hero_y))
         #ghost_rect = ghost.get_rect(topleft=(ghost_x, 200))
         if ghost_list:
@@ -170,8 +170,8 @@ while running:  # запуск бесконечного цикла игры до
             for (i, weap) in enumerate (bullets):
                 screen.blit(bullet, (weap.x, weap.y))
                 weap.x += 10
-                if weap.x > 620:
-                    bullets.pop(index)
+                if weap.x > 600:
+                    bullets.pop(i)
 
                 if ghost_list:
                     for (j, enemy) in enumerate (ghost_list):
@@ -183,6 +183,7 @@ while running:  # запуск бесконечного цикла игры до
         screen.fill((0, 191, 255))
         screen.blit(lose_label, (300, 150))
         screen.blit(restart_label, restart_rect)
+        bg_sound.stop()
         losing_sound.play()
 
         mouse = pygame.mouse.get_pos()
@@ -192,7 +193,8 @@ while running:  # запуск бесконечного цикла игры до
             ghost_list.clear()
             bullets.clear()
             bullets_stock = 6
-            pygame.display.update()
+            # bg_sound.play()
+            #pygame.display.update()
 
 
     clock.tick(20)  # задержка перед новой итерацией цикла (переключение анимаций персонажа и прокрутка фона)
