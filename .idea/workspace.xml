@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="847d605d-577e-4c97-ac27-07b267577076" name="Changes" comment="enemies, weapons and &quot;game over&quot; / &quot;revive&quot; screen">
+    <list default="true" id="847d605d-577e-4c97-ac27-07b267577076" name="Changes" comment="final commit of 2nd part">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -105,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683192925322</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="final commit of 2nd part">
+      <created>1683194975894</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1683194975894</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -122,6 +129,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="enemies and losing" />
     <MESSAGE value="enemies, weapons and &quot;game over&quot; / &quot;revive&quot; screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="enemies, weapons and &quot;game over&quot; / &quot;revive&quot; screen" />
+    <MESSAGE value="final commit of 2nd part" />
+    <option name="LAST_COMMIT_MESSAGE" value="final commit of 2nd part" />
   </component>
 </project>

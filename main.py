@@ -13,15 +13,9 @@ platform = pygame.image.load('images/ground.png').convert_alpha()
 pygame.display.set_icon(icon)
 
 bg = pygame.image.load('images/background1.jpg').convert_alpha()
+portal = pygame.image.load('images/gates.png').convert_alpha()
 
-#define var
 
-# tile_size = 100
-# def draw_grid():
-#     for line in range (0, 4):
-#         pygame.draw.line(screen, (255, 255, 255), (0, line * tile_size), (scr_a, line * tile_size))
-#     for line in range(0, 7):
-#         pygame.draw.line(screen, (255, 255, 255), (line * tile_size, 0), (line * tile_size, scr_b))
 move_left = [
     pygame.image.load('images/left_moves/left_move1.png'),
     pygame.image.load('images/left_moves/left_move2.png'),
@@ -53,12 +47,15 @@ jump_count = 7
 bg_sound = pygame.mixer.Sound('sounds/background.mp3')
 # bg_sound.play()
 losing_sound = pygame.mixer.Sound('sounds/sound_for_losing.mp3')
+winning_sound = pygame.mixer.Sound('sounds/sound_for_winning.mp3')
 
 ghost_timer = pygame.USEREVENT + 1
 pygame.time.set_timer(ghost_timer, 5000)
 
 label = pygame.font.Font('fonts/beer-money12.ttf', 50)
+labelforwin = pygame.font.Font('fonts/gogoia-deco.ttf', 50)
 lose_label = label.render('GAME OVER!!!', False, (255, 43, 43))
+win_label = labelforwin.render('CONGRATS, WINNER!!!', False, (239, 0, 151))
 restart_label = label.render('Revive', False, (245, 245, 245))
 restart_rect = restart_label.get_rect(topleft=(100, 100))
 
@@ -74,9 +71,7 @@ while running:  # запуск бесконечного цикла игры до
     for event in pygame.event.get():  # перебор всех событий в окне
         if event.type == pygame.QUIT:
             running = False
-            # выводит ошибку display Surface quit
-            # pygame.quit()
-            # безошибочный вариант
+
         if event.type == ghost_timer:
             ghost_list.append(ghost.get_rect(topleft = (630, 200)))
         if gameplay and event.type == pygame.KEYUP and event.key == pygame.K_c:
@@ -89,12 +84,16 @@ while running:  # запуск бесконечного цикла игры до
     screen.blit(bg, (bg_x, 0))
     screen.blit(bg, (bg_x + scr_a, 0))
 
-    #draw_grid()
+    screen.blit(portal, (bg_x + scr_a, 150))
+    portal_rect = portal.get_rect(topleft=(bg_x + scr_a, 150))
+
 
     if gameplay:
         # screen.blit(platform, (70, 200))
         bg_sound.play()
         hero_rect = move_left[0].get_rect(topleft = (hero_x, hero_y))
+        if portal_rect.colliderect(hero_rect):
+            gameplay = False
         #ghost_rect = ghost.get_rect(topleft=(ghost_x, 200))
         if ghost_list:
             for (index, elem) in enumerate(ghost_list):
@@ -179,22 +178,32 @@ while running:  # запуск бесконечного цикла игры до
                             ghost_list.pop(j)
                             bullets.pop(i)
 
-    else:
-        screen.fill((0, 191, 255))
-        screen.blit(lose_label, (300, 150))
-        screen.blit(restart_label, restart_rect)
-        bg_sound.stop()
-        losing_sound.play()
 
-        mouse = pygame.mouse.get_pos()
-        if restart_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
-            gameplay = True
-            hero_x = 30
-            ghost_list.clear()
-            bullets.clear()
-            bullets_stock = 6
-            # bg_sound.play()
-            #pygame.display.update()
+                # if portal_rect.colliderect(hero_rect):
+                #     gameplay = False
+
+    else:
+        bg_sound.stop()
+        if hero_rect.colliderect(portal_rect):
+                screen.fill((230, 168, 215))
+                screen.blit(win_label, (50, 150))
+                winning_sound.play()
+        else:
+            screen.fill((0, 191, 255))
+            screen.blit(lose_label, (300, 150))
+            screen.blit(restart_label, restart_rect)
+            # bg_sound.stop()
+            losing_sound.play()
+
+            mouse = pygame.mouse.get_pos()
+            if restart_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
+                gameplay = True
+                hero_x = 30
+                ghost_list.clear()
+                bullets.clear()
+                bullets_stock = 6
+                # bg_sound.play()
+                pygame.display.update()
 
 
     clock.tick(20)  # задержка перед новой итерацией цикла (переключение анимаций персонажа и прокрутка фона)
