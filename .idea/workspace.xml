@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="847d605d-577e-4c97-ac27-07b267577076" name="Changes" comment="final commit of 2nd part">
+    <list default="true" id="da61ecb3-c0b9-42a7-b3f0-27b2049cbcca" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/func.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/parameters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Jumping_Luna.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Jumping_Luna.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -13,29 +18,36 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
-    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2P9uiOf8ogTFfILMnyqaEyP42WU" />
+  <component name="ProjectId" id="2QBkQehYClphsOw5F1W4uQXhyox" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
-  }
-}</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/images" />
-    </key>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
   </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
@@ -45,8 +57,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="$USER_HOME$/PycharmProjects/pythonProject2/venv/bin/python" />
-      <option name="SDK_NAME" value="Python 3.10 (venv)" />
+      <option name="SDK_HOME" value="/usr/local/bin/python3" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -64,55 +75,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="847d605d-577e-4c97-ac27-07b267577076" name="Changes" comment="" />
-      <created>1682881745322</created>
+      <changelist id="da61ecb3-c0b9-42a7-b3f0-27b2049cbcca" name="Changes" comment="" />
+      <created>1684834346948</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1682881745322</updated>
+      <updated>1684834346948</updated>
     </task>
-    <task id="LOCAL-00001" summary="enemies and losing">
-      <created>1683181869674</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1683181869674</updated>
-    </task>
-    <task id="LOCAL-00002" summary="enemies and losing">
-      <created>1683181922721</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1683181922721</updated>
-    </task>
-    <task id="LOCAL-00003" summary="enemies, weapons and &quot;game over&quot; / &quot;revive&quot; screen">
-      <created>1683189778097</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1683189778097</updated>
-    </task>
-    <task id="LOCAL-00004" summary="enemies, weapons and &quot;game over&quot; / &quot;revive&quot; screen">
-      <created>1683192846969</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1683192846969</updated>
-    </task>
-    <task id="LOCAL-00005" summary="enemies, weapons and &quot;game over&quot; / &quot;revive&quot; screen">
-      <created>1683192925322</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1683192925322</updated>
-    </task>
-    <task id="LOCAL-00006" summary="final commit of 2nd part">
-      <created>1683194975894</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1683194975894</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -125,11 +93,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="enemies and losing" />
-    <MESSAGE value="enemies, weapons and &quot;game over&quot; / &quot;revive&quot; screen" />
-    <MESSAGE value="final commit of 2nd part" />
-    <option name="LAST_COMMIT_MESSAGE" value="final commit of 2nd part" />
   </component>
 </project>
