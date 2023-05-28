@@ -1,4 +1,5 @@
 from parameters import *
+
 def changes_in_hero_anim_counter():
     global hero_anim_counter
     if hero_anim_counter == 2:
@@ -38,7 +39,6 @@ def default_blit_hero():
     global hero_x, hero_y
     screen.blit(move_right[0], (hero_x, hero_y))
 
-
 def if_quit():
     global running, bullets_stock, ghost_list, bullets
     for event in pygame.event.get():  # перебор всех событий в окне
@@ -62,7 +62,6 @@ def portal_blit():
     portal_rect = portal.get_rect(topleft=(scr_a - 200, 150))
     if bg_control > bg_max:
         screen.blit(portal, (scr_a - 100, 150))
-        # portal_rect = portal.get_rect(topleft=(scr_a - 200, 150))
 
 def screen_blit():
     global screen, bg, bg_x, scr_a
@@ -73,14 +72,12 @@ def screen_blit():
 def collidir_with_portal_check():
     global hero_rect, ghost_rect, gameplay, elem, ghost_list, portal_rect
     hero_rect = move_left[0].get_rect(topleft=(hero_x, hero_y))
-    # hero_area()
 
     if bg_control > bg_max and portal_rect.colliderect(hero_rect):
         gameplay = False
 
 def ghosts_tracker():
     global hero_rect, ghost_rect, gameplay, elem, ghost_list, portal_rect
-    # hero_rect = move_left[0].get_rect(topleft=(hero_x, hero_y))
 
     if ghost_list:
         for (index, elem) in enumerate(ghost_list):
@@ -137,7 +134,6 @@ def show_info_window():
         screen.fill((0, 191, 255))
         screen.blit(lose_label, (300, 150))
         screen.blit(restart_label, restart_rect)
-        # bg_sound.stop()
         losing_sound.play()
 
         mouse = pygame.mouse.get_pos()
@@ -147,5 +143,4 @@ def show_info_window():
             ghost_list.clear()
             bullets.clear()
             bullets_stock = 6
-            # bg_sound.play()
             pygame.display.update()
