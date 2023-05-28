@@ -36,7 +36,8 @@ bg_control = 0
 bg_max = 5  #максимальное колличество итераций фона на уровне
 
 is_jump = False
-jump_count = 7
+jump_y = 8
+jump_count = jump_y
 
 bg_sound = pygame.mixer.Sound('sounds/background.mp3')
 losing_sound = pygame.mixer.Sound('sounds/sound_for_losing.mp3')

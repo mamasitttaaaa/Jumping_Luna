@@ -82,7 +82,10 @@ def ghosts_tracker():
     if ghost_list:
         for (index, elem) in enumerate(ghost_list):
             screen.blit(ghost, elem)
-            elem.x -= hero_speed - 3
+            if hero_x < (scr_a - 150):
+                elem.x -= hero_speed - 3
+            else:
+                elem.x -= hero_speed + hero_speed - 3
 
             if elem.x < -10:
                 ghost_list.pop(index)
@@ -98,7 +101,7 @@ def bullets_maker():
     if bullets:
         for (i, weap) in enumerate(bullets):
             screen.blit(bullet, (weap.x, weap.y))
-            weap.x += 10
+            weap.x += 50
             if weap.x > 600:
                 bullets.pop(i)
 
@@ -114,7 +117,7 @@ def jump_checker():
         if pygame.key.get_pressed()[pygame.K_SPACE] or pygame.key.get_pressed()[pygame.K_UP]:
             is_jump = True
     else:
-        if jump_count >= -7:
+        if jump_count >= -jump_y:
             if jump_count > 0:
                 hero_y -= (jump_count ** 2) / 2
             else:
@@ -122,7 +125,7 @@ def jump_checker():
             jump_count -= 1
         else:
             is_jump = False
-            jump_count = 7
+            jump_count = jump_y
 
 def show_info_window():
     global hero_rect, portal_rect, screen, mouse, gameplay, hero_x, ghost_list, bullets, bullets_stock
