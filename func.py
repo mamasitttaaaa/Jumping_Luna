@@ -59,9 +59,9 @@ def give_me_true():
 
 def portal_blit():
     global scr_a, portal_rect, bg_control, bg_x
-    portal_rect = portal.get_rect(topleft=(scr_a - 200, 150))
     if bg_control > bg_max:
         screen.blit(portal, (scr_a - 100, 150))
+        portal_rect = portal.get_rect(topleft=(scr_a - 200, 150))
 
 def screen_blit():
     global screen, bg, bg_x, scr_a
@@ -126,7 +126,7 @@ def jump_checker():
 
 def show_info_window():
     global hero_rect, portal_rect, screen, mouse, gameplay, hero_x, ghost_list, bullets, bullets_stock
-    if hero_rect.colliderect(portal_rect):
+    if bg_control > bg_max and hero_rect.colliderect(portal_rect):
         screen.fill((230, 168, 215))
         screen.blit(win_label, (50, 150))
         winning_sound.play()

@@ -8,7 +8,7 @@ from func import *
 pygame.display.set_caption("Jumping_Luna")
 pygame.display.set_icon(icon)
 
-pygame.time.set_timer(ghost_timer, 5000)
+pygame.time.set_timer(ghost_timer, 2000)
 
 
 while running:  # запуск бесконечного цикла игры до нажатия кнопки закрыть окно
