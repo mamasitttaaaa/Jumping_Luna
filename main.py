@@ -18,7 +18,7 @@ while running:  # запуск бесконечного цикла игры до
 
     screen_blit()
 
-
+    # portal_rect = portal.get_rect(topleft=(scr_a - 200, 150))
     portal_rect: None
     portal_blit()
 
@@ -26,27 +26,11 @@ while running:  # запуск бесконечного цикла игры до
     if gameplay:
         bg_sound.play()
 
-        # ghost_rect: None
         hero_rect: None
 
-        collidir_check()
+        collidir_with_portal_check()
 
-        # hero_rect = move_left[0].get_rect(topleft = (0,0))
-        # hero_area()
-        #
-        # if portal_rect.colliderect(hero_rect):
-        #     gameplay = False
-        # ghost_rect = ghost.get_rect(topleft=(ghost_x, 200))
-        # if ghost_list:
-        #     for (index, elem) in enumerate(ghost_list):
-        #         screen.blit(ghost, elem)
-        #         elem.x -= 6
-        #
-        #         if elem.x < -10:
-        #             ghost_list.pop(index)
-        #         if hero_rect.colliderect(elem):
-        #             gameplay = False
-
+        ghosts_tracker()
 
         # переменная, содержащая действия пользователя
         keys = pygame.key.get_pressed()
@@ -64,63 +48,38 @@ while running:  # запуск бесконечного цикла игры до
         elif keys[pygame.K_RIGHT]:
             if_right()
 
+        # если не прыжок проверяем на нажатие пользователем клавши "пробел" или "вверх"
+        jump_checker()
 
-        # если не прыжок проверяем на нажатие пользователем клавши "пробел"
-        if not is_jump:
-            if keys[pygame.K_SPACE] or keys[pygame.K_UP]:
-                is_jump = True
-        else:
-            if jump_count >= -7:
-                if jump_count > 0:
-                    hero_y -= (jump_count ** 2) / 2
-                else:
-                    hero_y += (jump_count ** 2) / 2
-                jump_count -= 1
-            else:
-                is_jump = False
-                jump_count = 7
+        bullets_maker()
 
-        # if keys[pygame.K_c]:
-        #     bullets.append(bullet.get_rect(topleft=(hero_x + 25, hero_y + 25)))
-
-        if bullets:
-            for (i, weap) in enumerate (bullets):
-                screen.blit(bullet, (weap.x, weap.y))
-                weap.x += 10
-                if weap.x > 600:
-                    bullets.pop(i)
-
-                if ghost_list:
-                    for (j, enemy) in enumerate (ghost_list):
-                        if weap.colliderect(enemy):
-                            ghost_list.pop(j)
-                            bullets.pop(i)
-
-
-        gameplay = what_happened()
+        # gameplay = what_happened()
 
     else:
         bg_sound.stop()
-        if hero_rect.colliderect(portal_rect):
-                screen.fill((230, 168, 215))
-                screen.blit(win_label, (50, 150))
-                winning_sound.play()
-        else:
-            screen.fill((0, 191, 255))
-            screen.blit(lose_label, (300, 150))
-            screen.blit(restart_label, restart_rect)
-            # bg_sound.stop()
-            losing_sound.play()
+        show_info_window()
+        # if hero_rect.colliderect(portal_rect):
+        #         screen.fill((230, 168, 215))
+        #         screen.blit(win_label, (50, 150))
+        #         winning_sound.play()
+        # else:
+        #     screen.fill((0, 191, 255))
+        #     screen.blit(lose_label, (300, 150))
+        #     screen.blit(restart_label, restart_rect)
+        #     # bg_sound.stop()
+        #     losing_sound.play()
+        #
+        #     mouse = pygame.mouse.get_pos()
+        #     if restart_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
+        #         gameplay = True
+        #         hero_x = 30
+        #         ghost_list.clear()
+        #         bullets.clear()
+        #         bullets_stock = 6
+        #         # bg_sound.play()
+        #         pygame.display.update()
 
-            mouse = pygame.mouse.get_pos()
-            if restart_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
-                gameplay = True
-                hero_x = 30
-                ghost_list.clear()
-                bullets.clear()
-                bullets_stock = 6
-                # bg_sound.play()
-                pygame.display.update()
+    gameplay = what_happened()
     running = give_me_true()
 
 

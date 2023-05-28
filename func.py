@@ -59,9 +59,10 @@ def give_me_true():
 
 def portal_blit():
     global scr_a, portal_rect, bg_control, bg_x
+    portal_rect = portal.get_rect(topleft=(scr_a - 200, 150))
     if bg_control > bg_max:
         screen.blit(portal, (scr_a - 100, 150))
-        portal_rect = portal.get_rect(topleft=(scr_a - 200, 150))
+        # portal_rect = portal.get_rect(topleft=(scr_a - 200, 150))
 
 def screen_blit():
     global screen, bg, bg_x, scr_a
@@ -69,17 +70,22 @@ def screen_blit():
     screen.blit(bg, (bg_x, 0))
     screen.blit(bg, (bg_x + scr_a, 0))
 
-def collidir_check():
+def collidir_with_portal_check():
     global hero_rect, ghost_rect, gameplay, elem, ghost_list, portal_rect
     hero_rect = move_left[0].get_rect(topleft=(hero_x, hero_y))
     # hero_area()
 
     if bg_control > bg_max and portal_rect.colliderect(hero_rect):
         gameplay = False
+
+def ghosts_tracker():
+    global hero_rect, ghost_rect, gameplay, elem, ghost_list, portal_rect
+    # hero_rect = move_left[0].get_rect(topleft=(hero_x, hero_y))
+
     if ghost_list:
         for (index, elem) in enumerate(ghost_list):
             screen.blit(ghost, elem)
-            elem.x -= 6
+            elem.x -= hero_speed - 3
 
             if elem.x < -10:
                 ghost_list.pop(index)
@@ -89,3 +95,57 @@ def collidir_check():
 def what_happened():
     global gameplay
     return gameplay
+
+def bullets_maker():
+    global bullets, weap, screen, bullet, ghost_list, enemy
+    if bullets:
+        for (i, weap) in enumerate(bullets):
+            screen.blit(bullet, (weap.x, weap.y))
+            weap.x += 10
+            if weap.x > 600:
+                bullets.pop(i)
+
+            if ghost_list:
+                for (j, enemy) in enumerate(ghost_list):
+                    if weap.colliderect(enemy):
+                        ghost_list.pop(j)
+                        bullets.pop(i)
+
+def jump_checker():
+    global is_jump, jump_count, hero_y
+    if not is_jump:
+        if pygame.key.get_pressed()[pygame.K_SPACE] or pygame.key.get_pressed()[pygame.K_UP]:
+            is_jump = True
+    else:
+        if jump_count >= -7:
+            if jump_count > 0:
+                hero_y -= (jump_count ** 2) / 2
+            else:
+                hero_y += (jump_count ** 2) / 2
+            jump_count -= 1
+        else:
+            is_jump = False
+            jump_count = 7
+
+def show_info_window():
+    global hero_rect, portal_rect, screen, mouse, gameplay, hero_x, ghost_list, bullets, bullets_stock
+    if hero_rect.colliderect(portal_rect):
+        screen.fill((230, 168, 215))
+        screen.blit(win_label, (50, 150))
+        winning_sound.play()
+    else:
+        screen.fill((0, 191, 255))
+        screen.blit(lose_label, (300, 150))
+        screen.blit(restart_label, restart_rect)
+        # bg_sound.stop()
+        losing_sound.play()
+
+        mouse = pygame.mouse.get_pos()
+        if restart_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
+            gameplay = True
+            hero_x = 30
+            ghost_list.clear()
+            bullets.clear()
+            bullets_stock = 6
+            # bg_sound.play()
+            pygame.display.update()
