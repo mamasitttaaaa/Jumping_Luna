@@ -8,7 +8,7 @@ from func import *
 pygame.display.set_caption("Jumping_Luna")
 pygame.display.set_icon(icon)
 
-pygame.time.set_timer(ghost_timer, 4000)
+pygame.time.set_timer(ghost_timer, 5000)
 
 
 while running:  # запуск бесконечного цикла игры до нажатия кнопки закрыть окно
@@ -33,8 +33,6 @@ while running:  # запуск бесконечного цикла игры до
         # переменная, содержащая действия пользователя
         keys = pygame.key.get_pressed()
 
-        default_blit_hero()
-
         changes_in_hero_anim_counter()  # чередование анимации
 
         # отслживание действий пользователя, чтобы изменять положение героя и фона
@@ -42,9 +40,17 @@ while running:  # запуск бесконечного цикла игры до
         # ограничениями является начало первой картинки, а концом - конец последней, так что движение будет заблокировано
         if keys[pygame.K_LEFT]:
             if_left()
+            anim_control = True
 
         elif keys[pygame.K_RIGHT]:
             if_right()
+            anim_control = False
+
+        elif not anim_control:
+            hero_blit(move_right)
+
+        elif anim_control:
+            hero_blit(move_left)
 
         # если не прыжок проверяем на нажатие пользователем клавши "пробел" или "вверх"
         jump_checker()

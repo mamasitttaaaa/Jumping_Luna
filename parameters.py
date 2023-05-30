@@ -34,6 +34,7 @@ hero_x = 30
 hero_y = 200
 bg_control = 0
 bg_max = 5  #максимальное колличество итераций фона на уровне
+anim_control = True
 
 is_jump = False
 jump_y = 8

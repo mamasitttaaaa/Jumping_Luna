@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da61ecb3-c0b9-42a7-b3f0-27b2049cbcca" name="Changes" comment="Fix problem with loosing and winning windows">
+    <list default="true" id="da61ecb3-c0b9-42a7-b3f0-27b2049cbcca" name="Changes" comment="Fix problem with connection between ghost and background">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/func.py" beforeDir="false" afterPath="$PROJECT_DIR$/func.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
@@ -106,7 +106,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685294289002</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fix problem with connection between ghost and background">
+      <created>1685295712646</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1685295712646</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -125,6 +132,7 @@
     <MESSAGE value="Final step in transferring to procedures but with bad connection between ghost and background" />
     <MESSAGE value="Final commit for applying procedures" />
     <MESSAGE value="Fix problem with loosing and winning windows" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix problem with loosing and winning windows" />
+    <MESSAGE value="Fix problem with connection between ghost and background" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix problem with connection between ghost and background" />
   </component>
 </project>

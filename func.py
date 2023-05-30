@@ -8,7 +8,7 @@ def changes_in_hero_anim_counter():
         hero_anim_counter += 1
 
 def if_left():
-    global bg_x, hero_x, screen, bg_control, hero_speed, scr_a, screen
+    global bg_x, hero_x, screen, bg_control, hero_speed, scr_a, screen, anim_control
     screen.blit(move_left[hero_anim_counter], (hero_x, hero_y))
     if hero_x > 30:
         hero_x -= hero_speed
@@ -22,7 +22,7 @@ def if_left():
             bg_x += hero_speed
 
 def if_right():
-    global hero_x, hero_speed, bg_x, bg_control, scr_a
+    global hero_x, hero_speed, bg_x, bg_control, scr_a, anim_control
     screen.blit(move_right[hero_anim_counter], (hero_x, hero_y))
     if hero_x < (scr_a - 150) or (bg_control > bg_max and hero_x < (scr_a-30)):
         hero_x += hero_speed
@@ -35,9 +35,9 @@ def if_right():
         elif bg_control <= bg_max:
             bg_x -= hero_speed
 
-def default_blit_hero():
+def hero_blit(move: list):
     global hero_x, hero_y
-    screen.blit(move_right[0], (hero_x, hero_y))
+    screen.blit(move[0], (hero_x, hero_y))
 
 def if_quit():
     global running, bullets_stock, ghost_list, bullets
