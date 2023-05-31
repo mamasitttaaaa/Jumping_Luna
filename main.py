@@ -55,6 +55,13 @@ while running:  # запуск бесконечного цикла игры до
         # если не прыжок проверяем на нажатие пользователем клавши "пробел" или "вверх"
         jump_checker()
 
+        light_bonfire()
+
+        bonfire1_rect: None
+        bonfire2_rect: None
+        bonfire3_rect: None
+        collidir_with_bonfire()
+
         bullets_maker()
 
     else:

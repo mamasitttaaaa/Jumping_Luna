@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da61ecb3-c0b9-42a7-b3f0-27b2049cbcca" name="Changes" comment="Fix problem with connection between ghost and background">
+    <list default="true" id="da61ecb3-c0b9-42a7-b3f0-27b2049cbcca" name="Changes" comment="Fix problem with hero animation">
+      <change afterPath="$PROJECT_DIR$/images/bonfire/fire1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/func.py" beforeDir="false" afterPath="$PROJECT_DIR$/func.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
@@ -45,6 +46,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/images/bonfire" />
+      <recent name="$PROJECT_DIR$/images/Bonfire" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
@@ -113,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685295712646</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fix problem with hero animation">
+      <created>1685447851113</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1685447851113</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -133,6 +147,7 @@
     <MESSAGE value="Final commit for applying procedures" />
     <MESSAGE value="Fix problem with loosing and winning windows" />
     <MESSAGE value="Fix problem with connection between ghost and background" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix problem with connection between ghost and background" />
+    <MESSAGE value="Fix problem with hero animation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix problem with hero animation" />
   </component>
 </project>

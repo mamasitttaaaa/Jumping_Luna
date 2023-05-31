@@ -33,8 +33,18 @@ hero_speed = 10
 hero_x = 30
 hero_y = 200
 bg_control = 0
-bg_max = 5  #максимальное колличество итераций фона на уровне
+bg_max = 15  #максимальное колличество итераций фона на уровне
 anim_control = True
+to_control_bg = True
+
+bonfire = pygame.image.load('images/bonfire/fire1.png')
+bon1 = 300
+bon2 = scr_a + 20
+bon3 = scr_a * 2 + 200
+bonfire_x1 = bon1
+bonfire_x2 = bon2
+bonfire_x3 = bon3
+last_bonfire_list = []
 
 is_jump = False
 jump_y = 8
