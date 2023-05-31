@@ -29,8 +29,8 @@ move_right = [
 
 ghost = pygame.image.load('images/enemy_ghost.png').convert_alpha()
 ghost_list = []
-boss = pygame.image.load('images/boss.png').convert_alpha() ######
-boss_list = [] ######
+boss = pygame.image.load('images/boss.png').convert_alpha() # !!!
+boss_list = [] # !!!
 bullet = pygame.image.load('images/weapon.png').convert_alpha()
 bullets = []
 
@@ -63,8 +63,8 @@ restart_rect = restart_label.get_rect(topleft=(100, 100))
 
 bullets_stock = 6  # запас выстрелов на уровень
 
-boss_stock = 1 ######
-k = 0 ######
+boss_stock = 1 # !!!
+k = 0 # !!!
 
 gameplay = True
 
@@ -84,13 +84,13 @@ while running:  # запуск бесконечного цикла игры до
                 bullets.append(bullet.get_rect(topleft=(hero_x + 25, hero_y + 25)))
                 bullets_stock -= 1
                 break
-        ####### {
+        # !!!{
         if gameplay:
             if boss_stock > 0:
                 screen.blit(boss, (bg_x + scr_a / 1.5, 110))
                 boss_list.append(boss.get_rect(topleft=(bg_x + scr_a/1.5, 110)))
                 boss_stock -= 1
-        ###### }
+        # !!!}
     screen.blit(bg, (bg_x - scr_a, 0))
     screen.blit(bg, (bg_x, 0))
     screen.blit(bg, (bg_x + scr_a, 0))
@@ -100,7 +100,6 @@ while running:  # запуск бесконечного цикла игры до
 
 
     if gameplay:
-        # screen.blit(platform, (70, 200))
         bg_sound.play()
         hero_rect = move_left[0].get_rect(topleft = (hero_x, hero_y))
         if portal_rect.colliderect(hero_rect):
@@ -116,7 +115,7 @@ while running:  # запуск бесконечного цикла игры до
                 if hero_rect.colliderect(elem):
                     gameplay = False
 
-        ######{
+        # !!!{
         if boss_list:
             for (index, elem) in enumerate(boss_list):
                 screen.blit(boss, elem)
@@ -125,7 +124,7 @@ while running:  # запуск бесконечного цикла игры до
                     boss_list.pop(index)
                 if hero_rect.colliderect(elem):
                     gameplay = False
-        ######}
+        # !!!}
 
         # переменная, содержащая действия пользователя
         keys = pygame.key.get_pressed()
@@ -183,8 +182,6 @@ while running:  # запуск бесконечного цикла игры до
                 is_jump = False
                 jump_count = 7
 
-        # if keys[pygame.K_c]:
-        #     bullets.append(bullet.get_rect(topleft=(hero_x + 25, hero_y + 25)))
 
         if bullets:
             for (i, weap) in enumerate(bullets):
@@ -198,7 +195,7 @@ while running:  # запуск бесконечного цикла игры до
                         if weap.colliderect(enemy):
                             ghost_list.pop(j)
                             bullets.pop(i)
-            ######{
+            # !!!{
             if boss_list:
                 for (j, monster) in enumerate(boss_list):
 
@@ -208,7 +205,7 @@ while running:  # запуск бесконечного цикла игры до
                     if weap.colliderect(monster) and (k == 3):
                         boss_list.pop(j)
 
-            ######}
+            # !!!}
 
                 # if weap.colliderect(boss_rect):
                 #     del boss
