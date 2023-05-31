@@ -19,11 +19,8 @@ def if_left():
     else:
         if bg_x == 0 and bg_control > 0:
             bg_control -= 1
-            print(bg_x, bg_control)
         if bg_x >= scr_a:
-            # bg_x = 0
             bg_control -= 1
-            print(bg_x, bg_control)
             bg_x = 0
         elif bg_control > 1:
             bg_x += hero_speed
@@ -40,11 +37,8 @@ def if_right():
     else:
         if bg_x == 0 and bg_control <= bg_max:
             bg_control += 1
-            print(bg_x, bg_control)
         if bg_x <= -scr_a:
-            # bg_x = 0
             bg_control += 1
-            print(bg_x, bg_control)
             bg_x = 0
         elif bg_control <= bg_max:
             bg_x -= hero_speed
@@ -187,19 +181,16 @@ def calc_new_place_for_bonfire_if_possible():
     if (bonfire_x1 <= - 50 or bonfire_x1 + 70 < hero_x) and bg_control < bg_max - 1:
         last_bonfire_list.append(("1", bg_x, bg_control))
         bonfire_x1 = scr_a + bon1 + bg_control * 90
-        print(last_bonfire_list)
     elif bonfire_x1 + 70 < hero_x:
         bonfire_x1 = scr_a * 3
     elif (bonfire_x2 <= - 50 or bonfire_x2 + 70 < hero_x) and bg_control < bg_max - 2:
         bonfire_x2 = scr_a * 3 + bon2 - bg_control * 90
         last_bonfire_list.append(("2", bg_x, bg_control))
-        print(last_bonfire_list)
     elif bonfire_x2 + 70 < hero_x:
         bonfire_x2 = scr_a * 3
     elif (bonfire_x3 <= - 50 or bonfire_x3 + 70 < hero_x) and bg_control < bg_max - 3:
         bonfire_x3 = scr_a * 3 + bon3 + bg_control *24
         last_bonfire_list.append(("3", bg_x, bg_control))
-        print(last_bonfire_list)
     elif bonfire_x3 + 70 < hero_x:
         bonfire_x3 = scr_a * 3
 
