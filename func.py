@@ -184,6 +184,7 @@ def show_info_window():
             bonfire_x3 = bon3
             boss_stock = 1
             k = 0
+            pygame.time.set_timer(ghost_timer, 5000)
             # last_bonfire_list = []
             for (index, elem) in enumerate(boss_list):
                 elem.x = scr_a

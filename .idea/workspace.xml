@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da61ecb3-c0b9-42a7-b3f0-27b2049cbcca" name="Changes" comment="Bonfires added">
-      <change afterPath="$PROJECT_DIR$/images/boss.png" afterDir="false" />
+    <list default="true" id="da61ecb3-c0b9-42a7-b3f0-27b2049cbcca" name="Changes" comment="Boss added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/func.py" beforeDir="false" afterPath="$PROJECT_DIR$/func.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/parameters.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685537692549</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Boss added">
+      <created>1685612991585</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1685612991585</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -157,6 +161,7 @@
     <MESSAGE value="Fix problem with connection between ghost and background" />
     <MESSAGE value="Fix problem with hero animation" />
     <MESSAGE value="Bonfires added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bonfires added" />
+    <MESSAGE value="Boss added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Boss added" />
   </component>
 </project>
