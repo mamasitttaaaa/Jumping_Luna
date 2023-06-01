@@ -214,7 +214,7 @@ def calc_new_place_for_bonfire_if_possible():
     elif bonfire_x2 + 70 < hero_x:
         bonfire_x2 = scr_a * 3
     elif (bonfire_x3 <= - 50 or bonfire_x3 + 70 < hero_x) and bg_control < bg_max - 3:
-        bonfire_x3 = scr_a * 3 + bon3 + bg_control
+        bonfire_x3 = scr_a * 3 + bon3
         last_bonfire_list.append(("3", bg_x, bg_control))
     elif bonfire_x3 + 70 < hero_x:
         bonfire_x3 = scr_a * 3
