@@ -108,7 +108,7 @@ def ghosts_tracker():
             if hero_x < (scr_a - 250):
                 elem.x -= hero_speed - 9
             else:
-                elem.x -= hero_speed + hero_speed - 10
+                elem.x -= hero_speed + hero_speed - 8
 
             if elem.x < -10:
                 ghost_list.pop(index)
@@ -214,7 +214,7 @@ def calc_new_place_for_bonfire_if_possible():
     elif bonfire_x2 + 70 < hero_x:
         bonfire_x2 = scr_a * 3
     elif (bonfire_x3 <= - 50 or bonfire_x3 + 70 < hero_x) and bg_control < bg_max - 3:
-        bonfire_x3 = scr_a * 3 + bon3 + bg_control *24
+        bonfire_x3 = scr_a * 3 + bon3 + bg_control
         last_bonfire_list.append(("3", bg_x, bg_control))
     elif bonfire_x3 + 70 < hero_x:
         bonfire_x3 = scr_a * 3
