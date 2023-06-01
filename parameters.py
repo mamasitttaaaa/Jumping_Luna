@@ -38,13 +38,14 @@ anim_control = True
 to_control_bg = True
 
 bonfire = pygame.image.load('images/bonfire/fire1.png')
-bon1 = 300
-bon2 = scr_a + 20
-bon3 = scr_a * 2 + 200
-bonfire_x1 = bon1
-bonfire_x2 = bon2
-bonfire_x3 = bon3
-last_bonfire_list = []
+bonfire_x = 390
+# bon1 = 300
+# bon2 = scr_a + 20
+# bon3 = scr_a * 2 + 200
+# bonfire_x1 = bon1
+# bonfire_x2 = bon2
+# bonfire_x3 = bon3
+# last_bonfire_list = []
 
 is_jump = False
 jump_y = 8

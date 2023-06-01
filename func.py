@@ -8,7 +8,7 @@ def changes_in_hero_anim_counter():
         hero_anim_counter += 1
 
 def if_left():
-    global bg_x, hero_x, screen, bg_control, hero_speed, scr_a, screen, anim_control, bonfire_x1, bonfire_x2, bonfire_x3, to_control_bg
+    global bg_x, hero_x, screen, bg_control, hero_speed, scr_a, screen, anim_control, bonfire_x, to_control_bg
     # calc_previous_bonfire_place()
     screen.blit(move_left[hero_anim_counter], (hero_x, hero_y))
     if to_control_bg == True:
@@ -17,6 +17,10 @@ def if_left():
     if hero_x > 30:
         hero_x -= hero_speed
     else:
+        if bonfire_x >= scr_a + 400:
+            bonfire_x = 0
+        elif bg_control > 1:
+            bonfire_x += hero_speed
         if bg_x == 0 and bg_control > 0:
             bg_control -= 1
         if bg_x >= scr_a:
@@ -24,17 +28,23 @@ def if_left():
             bg_x = 0
         elif bg_control > 1:
             bg_x += hero_speed
-            bonfire_x1 += hero_speed
-            bonfire_x2 += hero_speed
-            bonfire_x3 += hero_speed
+            # bonfire_x1 += hero_speed
+            # bonfire_x2 += hero_speed
+            # bonfire_x3 += hero_speed
 
 def if_right():
-    global hero_x, hero_speed, bg_x, bg_control, scr_a, anim_control, bonfire_x1, bonfire_x2, bonfire_x3, to_control_bg
-    calc_new_place_for_bonfire_if_possible()
+    global hero_x, hero_speed, bg_x, bg_control, scr_a, anim_control, bonfire_x, to_control_bg
+    # calc_new_place_for_bonfire_if_possible()
     screen.blit(move_right[hero_anim_counter], (hero_x, hero_y))
     if hero_x < (scr_a - 150) or (bg_control > bg_max and hero_x < (scr_a-30)):
         hero_x += hero_speed
     else:
+        print("here")
+        if bonfire_x <= -scr_a - 350:
+            print("2")
+            bonfire_x = 390
+        elif bg_control <= bg_max:
+            bonfire_x -= hero_speed
         if bg_x == 0 and bg_control <= bg_max:
             bg_control += 1
         if bg_x <= -scr_a:
@@ -42,9 +52,9 @@ def if_right():
             bg_x = 0
         elif bg_control <= bg_max:
             bg_x -= hero_speed
-            bonfire_x1 -= hero_speed
-            bonfire_x2 -= hero_speed
-            bonfire_x3 -= hero_speed
+            # bonfire_x1 -= hero_speed
+            # bonfire_x2 -= hero_speed
+            # bonfire_x3 -= hero_speed
     to_control_bg = True
 
 def hero_blit(move: list):
@@ -140,7 +150,7 @@ def jump_checker():
             jump_count = jump_y
 
 def show_info_window():
-    global hero_rect, portal_rect, screen, mouse, gameplay, hero_x, ghost_list, bullets, bullets_stock, bg_control, bonfire_x1, bonfire_x2, bonfire_x3
+    global hero_rect, portal_rect, screen, mouse, gameplay, hero_x, ghost_list, bullets, bullets_stock, bg_control
     if bg_control > bg_max and hero_rect.colliderect(portal_rect):
         screen.fill((230, 168, 215))
         screen.blit(win_label, (50, 150))
@@ -159,20 +169,25 @@ def show_info_window():
             bullets.clear()
             bullets_stock = 6
             bg_control = 0
-            bonfire_x1 = bon1
-            bonfire_x2 = bon2
-            bonfire_x3 = bon3
-            last_bonfire_list = []
             pygame.display.update()
 
 def light_bonfire():
-    global bonfire_x1, bonfire_x2, bonfire_x3, bonfire1_rect, bonfire2_rect, bonfire3_rect
-    screen.blit(bonfire, (bonfire_x1, 200))
-    screen.blit(bonfire, (bonfire_x2, 200))
-    screen.blit(bonfire, (bonfire_x3, 200))
-    bonfire1_rect = bonfire.get_rect(topleft=(bonfire_x1, 200))
-    bonfire2_rect = bonfire.get_rect(topleft=(bonfire_x2, 200))
-    bonfire3_rect = bonfire.get_rect(topleft=(bonfire_x3, 200))
+    # global bonfire_x1, bonfire_x2, bonfire_x3, bonfire1_rect, bonfire2_rect, bonfire3_rect
+    # screen.blit(bonfire, (bonfire_x1, 200))
+    # screen.blit(bonfire, (bonfire_x2, 200))
+    # screen.blit(bonfire, (bonfire_x3, 200))
+    # bonfire1_rect = bonfire.get_rect(topleft=(bonfire_x1, 200))
+    # bonfire2_rect = bonfire.get_rect(topleft=(bonfire_x2, 200))
+    # bonfire3_rect = bonfire.get_rect(topleft=(bonfire_x3, 200))
+    global bonfire1_rect, bonfire2_rect, bonfire3_rect, bonfire4_rect, bonfire_x
+    # screen.blit(bonfire, (bonfire_x - scr_a - 60, 200))
+    screen.blit(bonfire, (bonfire_x - 60, 200))
+    # screen.blit(bonfire, (bonfire_x + scr_a + 60, 200))
+    screen.blit(bonfire, (bonfire_x + scr_a + 300, 200))
+    # bonfire1_rect = bonfire.get_rect(topleft=(bg_x - 580, 200))
+    # bonfire2_rect = bonfire.get_rect(topleft=(bg_x + 360, 200))
+    # bonfire3_rect = bonfire.get_rect(topleft=(bg_x + scr_a + 180, 200))
+    # bonfire4_rect = bonfire.get_rect(topleft=(bg_x + scr_a + 490, 200))
 
 # костер появляется за пределами кадра, когда выходит за пределы создается новый за кадром
 # если перепрыгнули, то костер гаснет
