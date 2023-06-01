@@ -52,7 +52,7 @@ def hero_blit(move: list):
     screen.blit(move[0], (hero_x, hero_y))
 
 def if_quit():
-    global running, bullets_stock, ghost_list, bullets
+    global running, bullets_stock, ghost_list, boss_list, boss_stock
     for event in pygame.event.get():  # перебор всех событий в окне
         if event.type == pygame.QUIT:
             running = False
@@ -64,6 +64,17 @@ def if_quit():
                 bullets.append(bullet.get_rect(topleft=(hero_x + 25, hero_y + 25)))
                 bullets_stock -= 1
                 break
+
+        if gameplay:
+            if boss_stock > 0:
+                screen.blit(boss, (scr_a, 110))
+                boss_list.append(boss.get_rect(topleft=(scr_a, 110)))
+                boss_stock -= 1
+            # if boss_stock > 0:
+            #     if bg_x >= bg_max-1:
+            #         screen.blit(boss, (scr_a, 110))
+            #         boss_list.append(boss.get_rect(topleft=(scr_a, 110)))
+            #         boss_stock -= 1
 
 def give_me_true():
     global running
@@ -109,7 +120,7 @@ def what_happened():
     return gameplay
 
 def bullets_maker():
-    global bullets, weap, screen, bullet, ghost_list, enemy
+    global bullets, weap, screen, bullet, ghost_list, enemy, boss_rect, boss_death, boss_list, k
     if bullets:
         for (i, weap) in enumerate(bullets):
             screen.blit(bullet, (weap.x, weap.y))
@@ -122,6 +133,15 @@ def bullets_maker():
                     if weap.colliderect(enemy):
                         ghost_list.pop(j)
                         bullets.pop(i)
+
+            if boss_list:
+                for (j, monster) in enumerate(boss_list):
+                    if weap.colliderect(monster):
+                        k += 1
+                        bullets.pop(i)
+                    if weap.colliderect(monster) and (k == 3):
+                        boss_list.pop(j)
+
 
 def jump_checker():
     global is_jump, jump_count, hero_y
@@ -140,7 +160,7 @@ def jump_checker():
             jump_count = jump_y
 
 def show_info_window():
-    global hero_rect, portal_rect, screen, mouse, gameplay, hero_x, ghost_list, bullets, bullets_stock, bg_control, bonfire_x1, bonfire_x2, bonfire_x3
+    global hero_rect, portal_rect, screen, mouse, gameplay, hero_x, ghost_list, bullets, bullets_stock, bg_control, bonfire_x1, bonfire_x2, bonfire_x3, boss_x, boss_death, boss_stock, k
     if bg_control > bg_max and hero_rect.colliderect(portal_rect):
         screen.fill((230, 168, 215))
         screen.blit(win_label, (50, 150))
@@ -162,7 +182,11 @@ def show_info_window():
             bonfire_x1 = bon1
             bonfire_x2 = bon2
             bonfire_x3 = bon3
-            last_bonfire_list = []
+            boss_stock = 1
+            k = 0
+            # last_bonfire_list = []
+            for (index, elem) in enumerate(boss_list):
+                elem.x = scr_a
             pygame.display.update()
 
 def light_bonfire():
@@ -184,7 +208,7 @@ def calc_new_place_for_bonfire_if_possible():
     elif bonfire_x1 + 70 < hero_x:
         bonfire_x1 = scr_a * 3
     elif (bonfire_x2 <= - 50 or bonfire_x2 + 70 < hero_x) and bg_control < bg_max - 2:
-        bonfire_x2 = scr_a * 3 + bon2 - bg_control * 90
+        bonfire_x2 = scr_a * 2 + bon2 - bg_control * 90
         last_bonfire_list.append(("2", bg_x, bg_control))
     elif bonfire_x2 + 70 < hero_x:
         bonfire_x2 = scr_a * 3
@@ -224,3 +248,14 @@ def collidir_with_bonfire():
 
     if bonfire1_rect.colliderect(hero_rect) or bonfire2_rect.colliderect(hero_rect) or bonfire3_rect.colliderect(hero_rect):
         gameplay = False
+
+def boss_blit():
+    global boss_list, gameplay
+    if boss_list:
+        for (index, elem) in enumerate(boss_list):
+            screen.blit(boss, elem)
+            elem.x -= 4
+            if elem.x < -10:
+                boss_list.pop(index)
+            if hero_rect.colliderect(elem):
+                gameplay = False

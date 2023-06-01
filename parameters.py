@@ -26,6 +26,12 @@ ghost_list = []
 bullet = pygame.image.load('images/weapon.png').convert_alpha()
 bullets = []
 
+boss = pygame.image.load('images/boss.png').convert_alpha()
+boss_list = []
+boss_stock = 1
+k = 0
+
+
 hero_anim_counter = 0  # счетчик анимаций для цикла, чтобы показывать все картинки из списка беспрерывно
 bg_x = 0  # для смещения фона (две одинаковых картинки идут друг за другом)
 # параметры положения игрока и его движения

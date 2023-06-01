@@ -30,6 +30,8 @@ while running:  # запуск бесконечного цикла игры до
 
         ghosts_tracker()
 
+        boss_blit()
+
         # переменная, содержащая действия пользователя
         keys = pygame.key.get_pressed()
 
