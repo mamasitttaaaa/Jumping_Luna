@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da61ecb3-c0b9-42a7-b3f0-27b2049cbcca" name="Changes" comment="Boss added">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/func.py" beforeDir="false" afterPath="$PROJECT_DIR$/func.py" afterDir="false" />
-    </list>
+    <list default="true" id="da61ecb3-c0b9-42a7-b3f0-27b2049cbcca" name="Changes" comment="Bags fixed" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -139,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685612991585</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Bags fixed">
+      <created>1685613883521</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1685613883521</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -162,6 +166,7 @@
     <MESSAGE value="Fix problem with hero animation" />
     <MESSAGE value="Bonfires added" />
     <MESSAGE value="Boss added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Boss added" />
+    <MESSAGE value="Bags fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bags fixed" />
   </component>
 </project>
