@@ -32,7 +32,7 @@ def if_right():
     global hero_x, hero_speed, bg_x, bg_control, scr_a, anim_control, bonfire_x1, bonfire_x2, bonfire_x3, to_control_bg
     calc_new_place_for_bonfire_if_possible()
     screen.blit(move_right[hero_anim_counter], (hero_x, hero_y))
-    if hero_x < (scr_a - 150) or (bg_control > bg_max and hero_x < (scr_a-30)):
+    if hero_x < (scr_a - 250) or (bg_control > bg_max and hero_x < (scr_a-30)):
         hero_x += hero_speed
     else:
         if bg_x == 0 and bg_control <= bg_max:
@@ -105,10 +105,10 @@ def ghosts_tracker():
     if ghost_list:
         for (index, elem) in enumerate(ghost_list):
             screen.blit(ghost, elem)
-            if hero_x < (scr_a - 150):
-                elem.x -= hero_speed - 3
+            if hero_x < (scr_a - 250):
+                elem.x -= hero_speed - 9
             else:
-                elem.x -= hero_speed + hero_speed - 3
+                elem.x -= hero_speed + hero_speed - 10
 
             if elem.x < -10:
                 ghost_list.pop(index)
@@ -125,7 +125,7 @@ def bullets_maker():
         for (i, weap) in enumerate(bullets):
             screen.blit(bullet, (weap.x, weap.y))
             weap.x += 50
-            if weap.x > 600:
+            if weap.x > hero_x + 450:
                 bullets.pop(i)
 
             if ghost_list:
@@ -184,7 +184,7 @@ def show_info_window():
             bonfire_x3 = bon3
             boss_stock = 1
             k = 0
-            pygame.time.set_timer(ghost_timer, 5000)
+            pygame.time.set_timer(ghost_timer, 8000)
             # last_bonfire_list = []
             for (index, elem) in enumerate(boss_list):
                 elem.x = scr_a
@@ -192,12 +192,12 @@ def show_info_window():
 
 def light_bonfire():
     global bonfire_x1, bonfire_x2, bonfire_x3, bonfire1_rect, bonfire2_rect, bonfire3_rect
-    screen.blit(bonfire, (bonfire_x1, 200))
-    screen.blit(bonfire, (bonfire_x2, 200))
-    screen.blit(bonfire, (bonfire_x3, 200))
-    bonfire1_rect = bonfire.get_rect(topleft=(bonfire_x1, 200))
-    bonfire2_rect = bonfire.get_rect(topleft=(bonfire_x2, 200))
-    bonfire3_rect = bonfire.get_rect(topleft=(bonfire_x3, 200))
+    screen.blit(bonfire, (bonfire_x1, 220))
+    screen.blit(bonfire, (bonfire_x2, 220))
+    screen.blit(bonfire, (bonfire_x3, 220))
+    bonfire1_rect = bonfire.get_rect(topleft=(bonfire_x1, 220))
+    bonfire2_rect = bonfire.get_rect(topleft=(bonfire_x2, 220))
+    bonfire3_rect = bonfire.get_rect(topleft=(bonfire_x3, 220))
 
 # костер появляется за пределами кадра, когда выходит за пределы создается новый за кадром
 # если перепрыгнули, то костер гаснет
