@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3218a3f1-f7c2-4fed-b14d-283568045266" name="Changes" comment="Final final changes applyied">
-      <change beforePath="$PROJECT_DIR$/func.py" beforeDir="false" afterPath="$PROJECT_DIR$/func.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="3218a3f1-f7c2-4fed-b14d-283568045266" name="Changes" comment="Final final final changes applyied" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,7 +83,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685632870237</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Final final final changes applyied">
+      <created>1685633004454</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1685633004454</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -104,6 +108,7 @@
     <MESSAGE value="Updated README.md" />
     <MESSAGE value="Final changes applyied" />
     <MESSAGE value="Final final changes applyied" />
-    <option name="LAST_COMMIT_MESSAGE" value="Final final changes applyied" />
+    <MESSAGE value="Final final final changes applyied" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final final final changes applyied" />
   </component>
 </project>

@@ -8,7 +8,7 @@ from func import *
 pygame.display.set_caption("Jumping_Luna")
 pygame.display.set_icon(icon)
 
-# pygame.time.set_timer(ghost_timer, 8000)
+pygame.time.set_timer(ghost_timer, 8000)
 
 
 while running:  # запуск бесконечного цикла игры до нажатия кнопки закрыть окно
@@ -62,7 +62,7 @@ while running:  # запуск бесконечного цикла игры до
         bonfire1_rect: None
         bonfire2_rect: None
         bonfire3_rect: None
-        # collidir_with_bonfire()
+        collidir_with_bonfire()
 
         bullets_maker()
 
