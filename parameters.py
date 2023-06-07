@@ -50,6 +50,15 @@ bonfire_x = 0
 # bonfire_x3 = bon3
 # last_bonfire_list = []
 
+ghost = pygame.image.load('images/enemy_ghost.png')
+ghost_x = 0
+
+bullet = pygame.image.load('images/bullet.png')
+bullet_speed_norm = 12 # скорость пули, если фон стабилен
+bullet_speed_in_moving_bg = bullet_speed_norm - hero_speed # скорость пули, если фон двигается
+move_bg_check = False
+bullets_list = []
+
 is_jump = False
 jump_y = 8
 jump_count = jump_y

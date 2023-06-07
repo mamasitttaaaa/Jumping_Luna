@@ -1,3 +1,5 @@
+import pygame
+
 from parameters import *
 
 def window_switcher():  #approved
@@ -7,6 +9,10 @@ def window_switcher():  #approved
         screen_blit()
 
         ground_blit()
+
+        ghost1_rect: None
+        ghost2_rect: None
+        ghost_blit()
 
         portal_rect: None
         portal_blit()
@@ -27,6 +33,13 @@ def window_switcher():  #approved
 
         else:
             hero_blit(move_right)
+
+        collidir_with_ghost()
+
+        bullet_rect: None
+        bullet_blit()
+
+        collidir_with_bullets()
 
         # если не прыжок проверяем на нажатие пользователем клавши "пробел" или "вверх"
         jump_checker()
@@ -91,19 +104,47 @@ def ground_blit():
         jump_count = jump_y
 
 def ghost_blit():
-    global collidir_with_ground_tracker, should_i_update, stop_jump, check_stop, jump_count
-    gr_y = ground_y
+    global ghost1_rect, ghost2_rect
 
-    for i in range(0, 6):
-        if i > 0 and i < 3:
-            gr_y -= 60
-        elif i >= 4 and i < 5:
-            gr_y += 60
+    if bg_control > 2:
+        screen.blit(ghost, (ghost_x + bg_x + scr_a + 100 / 2 - 20, 250 - 42))
+        ghost1_rect = ghost.get_rect(topleft=(ghost_x + bg_x + scr_a + 100 / 2 - 20, 250 - 42))
+    screen.blit(ghost, (ghost_x + 100 * 3 + bg_x + scr_a + 100 / 2 - 20, 130 - 42))
+    ghost2_rect = ghost.get_rect(topleft=(ghost_x + 100 * 3 + bg_x + scr_a + 100 / 2 - 20, 130 - 42))
 
-        screen.blit(ground, (ground_x + 100 * i + bg_x + scr_a, gr_y))
+def collidir_with_ghost():
+    global gameplay
 
-        if (i != 4 and i != 2) or (bg_control >= bg_max - 1 and bg_x < - scr_a) or (bg_control > bg_max - 1 and bg_x > - scr_a):
-            screen.blit(ground, (ground_x + 100 * i + bg_x2 + scr_a, ground_y))
+    if hero_rect.colliderect(ghost2_rect) or (bg_control > 2 and hero_rect.colliderect(ghost1_rect)):
+        gameplay = False
+
+def bullet_blit():
+    global bullets_list
+
+    if pygame.key.get_pressed()[pygame.K_c] or pygame.key.get_pressed()[pygame.K_DOWN]:
+        print("go")
+        bullets_list.append([hero_x, hero_y, hero_x, None])
+
+    for i in range(0, len(bullets_list)):
+        if not move_bg_check:
+            bullets_list[i][0] += bullet_speed_norm
+        else:
+            bullets_list[i][0] += bullet_speed_in_moving_bg
+
+        if bullets_list[i][0] < bullets_list[i][2] + 250:
+            print(i)
+            screen.blit(bullet, (bullets_list[i][0], bullets_list[i][1]))
+            bullets_list[i][3] = bullet.get_rect(topleft=(bullets_list[i][0], bullets_list[i][1]))
+        else:
+            bullets_list.remove(i)
+
+def collidir_with_bullets():
+    global gameplay, bullets_list
+
+    for i in range(0, len(bullets_list)):
+        if ghost2_rect.colliderect(bullets_list[i][3]) or (bg_control > 2 and ghost1_rect.colliderect(bullets_list[i][3])):
+            bullets_list.remove(i)
+            gameplay = False
 
 def changes_in_hero_anim_counter():  #approved
     global hero_anim_counter
@@ -113,10 +154,11 @@ def changes_in_hero_anim_counter():  #approved
         hero_anim_counter += 1
 
 def if_right():  #approved
-    global hero_x, bg_x, bg_control, bg_x2, hero_y, collidir_with_ground_tracker
+    global hero_x, bg_x, bg_control, bg_x2, hero_y, collidir_with_ground_tracker, move_bg_check
     screen.blit(move_right[hero_anim_counter], (hero_x, hero_y))
     if hero_x < (scr_a // 2) or (bg_control > bg_max and hero_x < (scr_a - 30)):
         hero_x += hero_speed
+        move_bg_check = False
     else:
         if bg_x == 0 and bg_control <= bg_max:
             bg_control += 1
@@ -128,6 +170,7 @@ def if_right():  #approved
         elif bg_control <= bg_max:
             bg_x -= hero_speed
             bg_x2 -= hero_speed
+            move_bg_check = True
 
 def hero_blit(move: list):  #approved
     global hero_x, hero_y
