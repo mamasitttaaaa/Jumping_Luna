@@ -38,17 +38,22 @@ def window_switcher():  #approved
         show_info_window()
 
 def falling():
-    global hero_y, collidir_with_ground_tracker, gameplay
+    global hero_y, collidir_with_ground_tracker, gameplay, check_fall
     if collidir_with_ground_tracker and not is_jump:
-        hero_y += 10
+        if hero_y + 10 + 60 >= ground_y and check_fall:
+            hero_y = ground_y - 60  # костыль для решения проблемы понижения положения героя относительно уровня нижней платформы после поднятия и спуска по другим уроням
+        else:
+            hero_y += 10
+
 
     if hero_y > scr_b:
         gameplay = False
 
     collidir_with_ground_tracker = False
+    check_fall = False
 
 def ground_blit():
-    global collidir_with_ground_tracker, should_i_update, stop_jump, check_stop, jump_count
+    global collidir_with_ground_tracker, stop_jump, check_stop, jump_count, check_fall
     gr_y = ground_y
 
     for i in range(0, 6):
@@ -67,20 +72,38 @@ def ground_blit():
         if ((hero_y + 51 > gr_y and hero_x > ground_x + 100 * i + bg_x + scr_a and hero_x < ground_x + 100 * i + bg_x + scr_a + 100) or (hero_y + 51 > ground_y and hero_x > ground_x + 100 * i + bg_x2 + scr_a and hero_x < ground_x + 100 * i + bg_x2 + scr_a + 100)):
             collidir_with_ground_tracker = True
 
+        # условие, чтобы герой падал, если находится ниже платформы
         if ((hero_y + 61 < gr_y and hero_x > ground_x + 100 * i + bg_x + scr_a and hero_x < ground_x + 100 * i + bg_x + scr_a + 100) or (hero_y + 61 < ground_y and hero_x > ground_x + 100 * i + bg_x2 + scr_a and hero_x < ground_x + 100 * i + bg_x2 + scr_a + 100)):
             collidir_with_ground_tracker = True
+            check_fall = True
 
+    # останавливает прыжок, если приземлиление произошло на платформу
     if not check_stop:
-        if (hero_x > ground_x + 100 + bg_x + scr_a and hero_x < ground_x + 100 + bg_x + scr_a + 100 and hero_y + 61 >= 194.5) or\
+        if (hero_x > ground_x + 100 + bg_x + scr_a and hero_x < ground_x + 100 + bg_x + scr_a + 100 and hero_y + 61 >= 190) or\
                 (hero_x > ground_x + 100 * 2 + bg_x + scr_a and hero_x < ground_x + 100 * 2 + bg_x + scr_a + 100 * 2 and hero_y + 61 >= 130) or\
-                (hero_x > ground_x + 100 * 4 + bg_x + scr_a and hero_x < ground_x + 100 * 4 + bg_x + scr_a + 100 and hero_y + 61 >= 194.5):
+                (hero_x > ground_x + 100 * 4 + bg_x + scr_a and hero_x < ground_x + 100 * 4 + bg_x + scr_a + 100 and hero_y + 61 >= 190):
             stop_jump = True
-            check_stop = True
+            check_stop = True # следит, чтобы второй раз не произошла остановка прыжка
         else:
             stop_jump = False
     else:
         stop_jump = False
         jump_count = jump_y
+
+def ghost_blit():
+    global collidir_with_ground_tracker, should_i_update, stop_jump, check_stop, jump_count
+    gr_y = ground_y
+
+    for i in range(0, 6):
+        if i > 0 and i < 3:
+            gr_y -= 60
+        elif i >= 4 and i < 5:
+            gr_y += 60
+
+        screen.blit(ground, (ground_x + 100 * i + bg_x + scr_a, gr_y))
+
+        if (i != 4 and i != 2) or (bg_control >= bg_max - 1 and bg_x < - scr_a) or (bg_control > bg_max - 1 and bg_x > - scr_a):
+            screen.blit(ground, (ground_x + 100 * i + bg_x2 + scr_a, ground_y))
 
 def changes_in_hero_anim_counter():  #approved
     global hero_anim_counter
@@ -140,6 +163,7 @@ def jump_checker():  #approved
             if jump_count >= -jump_y:
                 if jump_count > 0:
                     hero_y -= (jump_count ** 2) / 2
+                    print((jump_count ** 2) / 2)
                 else:
                     hero_y += (jump_count ** 2) / 2
                 jump_count -= 1

@@ -25,7 +25,8 @@ ground = pygame.image.load('images/platform.png')
 ground_y = 250
 ground_x = 0
 collidir_with_ground_tracker = False
-should_i_update = True
+# should_i_update = True
+check_fall = False
 
 hero_anim_counter = 0  # счетчик анимаций для цикла, чтобы показывать все картинки из списка беспрерывно
 bg_x = 0  # для смещения фона (две одинаковых картинки идут друг за другом)
@@ -40,7 +41,7 @@ bg_max = 6  #максимальное колличество итераций ф
 bg_x2 = - scr_a
 
 bonfire = pygame.image.load('images/bonfire/fire1.png')
-bonfire_x = 390
+bonfire_x = 0
 # bon1 = 300
 # bon2 = scr_a + 20
 # bon3 = scr_a * 2 + 200
