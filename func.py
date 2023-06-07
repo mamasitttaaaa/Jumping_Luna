@@ -31,12 +31,24 @@ def window_switcher():  #approved
         # если не прыжок проверяем на нажатие пользователем клавши "пробел" или "вверх"
         jump_checker()
 
+        falling()
+
     else:
         bg_sound.stop()
         show_info_window()
 
+def falling():
+    global hero_y, collidir_with_ground_tracker, gameplay
+    if collidir_with_ground_tracker and not is_jump:
+        hero_y += 10
+
+    if hero_y > scr_b:
+        gameplay = False
+
+    collidir_with_ground_tracker = False
+
 def ground_blit():
-    global collidir_with_ground_tracker, should_i_update
+    global collidir_with_ground_tracker, should_i_update, stop_jump, check_stop, jump_count
     gr_y = ground_y
 
     for i in range(0, 6):
@@ -46,26 +58,29 @@ def ground_blit():
             gr_y += 60
 
         screen.blit(ground, (ground_x + 100 * i + bg_x + scr_a, gr_y))
-        # if hero_rect.collidirect(ground.get_rect(topleft=(ground_x + 100 * i + bg_x + scr_a, gr_y))):
-        #     collidir_with_ground_tracker = True
-        #     should_i_update = False
-        # else:
-        #     collidir_with_ground_tracker = False
 
         if (i != 4 and i != 2) or (bg_control >= bg_max - 1 and bg_x < - scr_a) or (bg_control > bg_max - 1 and bg_x > - scr_a):
             screen.blit(ground, (ground_x + 100 * i + bg_x2 + scr_a, ground_y))
-            # if hero_rect.collidirect(ground.get_rect(topleft=(ground_x + 100 * i + bg_x2 + scr_a, ground_y))):
-            #     collidir_with_ground_tracker = True
-            # elif should_i_update:
-            #     collidir_with_ground_tracker = False
-
-        # if (hero_x > ground_x + 100 * i + bg_x + scr_a and hero_x < ground_x + 100 * i + bg_x + scr_a + 100) or (hero_x > ground_x + 100 * i + bg_x2 + scr_a and hero_x < ground_x + 100 * i + bg_x2 + scr_a + 100):
-        #     collidir_with_ground_tracker = True
-
-        if ((hero_y != gr_y and hero_x > ground_x + 100 * i + bg_x + scr_a and hero_x < ground_x + 100 * i + bg_x + scr_a + 100) or (hero_y != ground_y and hero_x > ground_x + 100 * i + bg_x2 + scr_a and hero_x < ground_x + 100 * i + bg_x2 + scr_a + 100)):
+        elif hero_x + 20 > ground_x + 100 * i + bg_x2 + scr_a and hero_x + 20 < ground_x + 100 * i + bg_x2 + scr_a + 90:
             collidir_with_ground_tracker = True
 
+        if ((hero_y + 51 > gr_y and hero_x > ground_x + 100 * i + bg_x + scr_a and hero_x < ground_x + 100 * i + bg_x + scr_a + 100) or (hero_y + 51 > ground_y and hero_x > ground_x + 100 * i + bg_x2 + scr_a and hero_x < ground_x + 100 * i + bg_x2 + scr_a + 100)):
+            collidir_with_ground_tracker = True
 
+        if ((hero_y + 61 < gr_y and hero_x > ground_x + 100 * i + bg_x + scr_a and hero_x < ground_x + 100 * i + bg_x + scr_a + 100) or (hero_y + 61 < ground_y and hero_x > ground_x + 100 * i + bg_x2 + scr_a and hero_x < ground_x + 100 * i + bg_x2 + scr_a + 100)):
+            collidir_with_ground_tracker = True
+
+    if not check_stop:
+        if (hero_x > ground_x + 100 + bg_x + scr_a and hero_x < ground_x + 100 + bg_x + scr_a + 100 and hero_y + 61 >= 194.5) or\
+                (hero_x > ground_x + 100 * 2 + bg_x + scr_a and hero_x < ground_x + 100 * 2 + bg_x + scr_a + 100 * 2 and hero_y + 61 >= 130) or\
+                (hero_x > ground_x + 100 * 4 + bg_x + scr_a and hero_x < ground_x + 100 * 4 + bg_x + scr_a + 100 and hero_y + 61 >= 194.5):
+            stop_jump = True
+            check_stop = True
+        else:
+            stop_jump = False
+    else:
+        stop_jump = False
+        jump_count = jump_y
 
 def changes_in_hero_anim_counter():  #approved
     global hero_anim_counter
@@ -77,23 +92,19 @@ def changes_in_hero_anim_counter():  #approved
 def if_right():  #approved
     global hero_x, bg_x, bg_control, bg_x2, hero_y, collidir_with_ground_tracker
     screen.blit(move_right[hero_anim_counter], (hero_x, hero_y))
-    if not collidir_with_ground_tracker:
-        if hero_x < (scr_a // 2) or (bg_control > bg_max and hero_x < (scr_a - 30)):
-            hero_x += hero_speed
-        else:
-            if bg_x == 0 and bg_control <= bg_max:
-                bg_control += 1
-            if bg_x2 <= - 2 * scr_a:
-                bg_x2 = 0
-            if bg_x <= - 2 * scr_a:
-                bg_control += 1
-                bg_x = 0
-            elif bg_control <= bg_max:
-                bg_x -= hero_speed
-                bg_x2 -= hero_speed
+    if hero_x < (scr_a // 2) or (bg_control > bg_max and hero_x < (scr_a - 30)):
+        hero_x += hero_speed
     else:
-        hero_y += 2
-    collidir_with_ground_tracker = False
+        if bg_x == 0 and bg_control <= bg_max:
+            bg_control += 1
+        if bg_x2 <= - 2 * scr_a:
+            bg_x2 = 0
+        if bg_x <= - 2 * scr_a:
+            bg_control += 1
+            bg_x = 0
+        elif bg_control <= bg_max:
+            bg_x -= hero_speed
+            bg_x2 -= hero_speed
 
 def hero_blit(move: list):  #approved
     global hero_x, hero_y
@@ -119,23 +130,31 @@ def collidir_with_portal_check():  #approved
         gameplay = False
 
 def jump_checker():  #approved
-    global is_jump, jump_count, hero_y, gr_y
-    if not is_jump:
-        if pygame.key.get_pressed()[pygame.K_SPACE] or pygame.key.get_pressed()[pygame.K_UP]:
-            is_jump = True
-    elif not collidir_with_ground_tracker:
-        if jump_count >= -jump_y:
-            if jump_count > 0:
-                hero_y -= (jump_count ** 2) / 2
-            else:
-                hero_y += (jump_count ** 2) / 2
-            jump_count -= 1
+    global is_jump, jump_count, hero_y, gr_y, stop_jump, check_stop
+    if not stop_jump:
+        if not is_jump:
+            if pygame.key.get_pressed()[pygame.K_SPACE] or pygame.key.get_pressed()[pygame.K_UP]:
+                is_jump = True
         else:
-            is_jump = False
-            jump_count = jump_y
+            check_stop = False
+            if jump_count >= -jump_y:
+                if jump_count > 0:
+                    hero_y -= (jump_count ** 2) / 2
+                else:
+                    hero_y += (jump_count ** 2) / 2
+                jump_count -= 1
+            else:
+                is_jump = False
+                jump_count = jump_y
+    else:
+        is_jump = False
+    stop_jump = False
+
+
+
 
 def show_info_window():  #approved
-    global hero_rect, portal_rect, screen, mouse, gameplay, hero_x, bg_control, bg_x, hero_anim_counter, jump_count, bg_x2, collidir_with_ground_tracker, should_i_update
+    global hero_rect, portal_rect, screen, mouse, gameplay, hero_x, bg_control, bg_x, hero_anim_counter, jump_count, bg_x2, collidir_with_ground_tracker, should_i_update, hero_y
     if bg_control > bg_max and hero_rect.colliderect(portal_rect):
         screen.fill((230, 168, 215))
         screen.blit(win_label, (50, 150))
@@ -150,6 +169,7 @@ def show_info_window():  #approved
         if restart_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
             gameplay = True
             hero_x = 30
+            hero_y = 190
             hero_anim_counter = 0
             bg_x = 0
             bg_x2 = - scr_a

@@ -52,6 +52,8 @@ bonfire_x = 390
 is_jump = False
 jump_y = 8
 jump_count = jump_y
+stop_jump = False
+check_stop = False
 
 bg_sound = pygame.mixer.Sound('sounds/background.mp3')
 losing_sound = pygame.mixer.Sound('sounds/sound_for_losing.mp3')
