@@ -90,7 +90,7 @@ def ground_blit():
             collidir_with_ground_tracker = True
 
         # отвечает за падение при изменении уровней платформ
-        if ((hero_y + 61 > gr_y + 10 and hero_x > ground_x + 100 * i + bg_x + scr_a and hero_x - 10 < ground_x + 100 * i + bg_x + scr_a + 100) or (hero_y + 51 > ground_y and hero_x > ground_x + 100 * i + bg_x2 + scr_a and hero_x - 30 < ground_x + 100 * i + bg_x2 + scr_a + 100)):
+        if ((hero_y + 61 > gr_y + 10 and hero_x + 20 > ground_x + 100 * i + bg_x + scr_a and hero_x - 10 < ground_x + 100 * i + bg_x + scr_a + 100) or (hero_y + 51 > ground_y and hero_x + 10 > ground_x + 100 * i + bg_x2 + scr_a and hero_x - 30 < ground_x + 100 * i + bg_x2 + scr_a + 100)):
             collidir_with_ground_tracker = True
 
     # останавливает прыжок, если приземлиление произошло на платформу
@@ -107,8 +107,8 @@ def ground_blit():
         jump_count = jump_y
 
     # падение для возвращения на нижнюю платформу
-    if hero_x + 40 > ground_x + 100 * 4 + bg_x + scr_a and hero_x < ground_x + 100 * 4 + bg_x + scr_a + 100 and hero_y + 61 < 190 or\
-        hero_x + 40 > ground_x + 100 * 6 + bg_x + scr_a and hero_x < ground_x + 100 * 6 + bg_x + scr_a + 100 and hero_y + 61 < 250:
+    if hero_x + 10 > ground_x + 100 * 4 + bg_x + scr_a and hero_x < ground_x + 100 * 4 + bg_x + scr_a + 100 and hero_y + 61 < 190 or\
+        hero_x + 10 > ground_x + 100 * 6 + bg_x + scr_a and hero_x < ground_x + 100 * 6 + bg_x + scr_a + 100 and hero_y + 61 < 250:
         collidir_with_ground_tracker = True
         check_fall = True
 
