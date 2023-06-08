@@ -52,12 +52,22 @@ bonfire_x = 0
 
 ghost = pygame.image.load('images/enemy_ghost.png')
 ghost_x = 0
+delete_ghost1 = False
+delete_ghost2 = False
+ghost1_exist = False
+ghost2_exist = False
 
-bullet = pygame.image.load('images/bullet.png')
-bullet_speed_norm = 12 # скорость пули, если фон стабилен
+bullet = pygame.image.load('images/weapon.png')
+bullet_speed_norm = 16 # скорость пули, если фон стабилен
 bullet_speed_in_moving_bg = bullet_speed_norm - hero_speed # скорость пули, если фон двигается
 move_bg_check = False
 bullets_list = []
+press = False
+bullet_x: None
+bullet_y: None
+remember_x: None
+bullet_rect: None
+delete_item = False
 
 is_jump = False
 jump_y = 8

@@ -104,47 +104,111 @@ def ground_blit():
         jump_count = jump_y
 
 def ghost_blit():
-    global ghost1_rect, ghost2_rect
+    global ghost1_rect, ghost2_rect, ghost1_exist, ghost2_exist
 
-    if bg_control > 2:
+    if bg_control > 2 and not delete_ghost1:
         screen.blit(ghost, (ghost_x + bg_x + scr_a + 100 / 2 - 20, 250 - 42))
         ghost1_rect = ghost.get_rect(topleft=(ghost_x + bg_x + scr_a + 100 / 2 - 20, 250 - 42))
-    screen.blit(ghost, (ghost_x + 100 * 3 + bg_x + scr_a + 100 / 2 - 20, 130 - 42))
-    ghost2_rect = ghost.get_rect(topleft=(ghost_x + 100 * 3 + bg_x + scr_a + 100 / 2 - 20, 130 - 42))
+        ghost1_exist = True
+    else:
+        ghost1_exist = False
+
+    if not delete_ghost2:
+        screen.blit(ghost, (ghost_x + 100 * 3 + bg_x + scr_a + 100 / 2 - 20, 130 - 42))
+        ghost2_rect = ghost.get_rect(topleft=(ghost_x + 100 * 3 + bg_x + scr_a + 100 / 2 - 20, 130 - 42))
+        ghost2_exist = True
+    else:
+        ghost2_exist = False
 
 def collidir_with_ghost():
     global gameplay
 
-    if hero_rect.colliderect(ghost2_rect) or (bg_control > 2 and hero_rect.colliderect(ghost1_rect)):
+    if (ghost2_exist and hero_rect.colliderect(ghost2_rect) and not delete_ghost2) or (ghost1_exist and bg_control > 2 and not delete_ghost1 and hero_rect.colliderect(ghost1_rect)):
         gameplay = False
 
+# def bullet_blit():
+#     global bullets_list, press
+#
+#     if pygame.key.get_pressed()[pygame.K_c] or pygame.key.get_pressed()[pygame.K_DOWN] and not press:
+#         bullets_list.append([hero_x + 40, hero_y + 15, hero_x + 40, None])
+#         press = True
+#         print("bullet")
+#     else:
+#         press = False
+#
+#     delete_list = []
+#     for i in range(0, len(bullets_list)):
+#         if not move_bg_check:
+#             bullets_list[i][0] += bullet_speed_norm
+#         else:
+#             bullets_list[i][0] += bullet_speed_in_moving_bg
+#
+#         if bullets_list[i][0] < bullets_list[i][2] + 250:
+#             screen.blit(bullet, (bullets_list[i][0], bullets_list[i][1]))
+#             bullets_list[i][3] = bullet.get_rect(topleft=(bullets_list[i][0], bullets_list[i][1]))
+#         else:
+#             delete_list.append(i)
+#
+#     delete_bullet(delete_list)
+
 def bullet_blit():
-    global bullets_list
+    global bullet_x, bullet_y, remember_x, bullet_rect, press, delete_item
 
-    if pygame.key.get_pressed()[pygame.K_c] or pygame.key.get_pressed()[pygame.K_DOWN]:
-        print("go")
-        bullets_list.append([hero_x, hero_y, hero_x, None])
+    if not press and (pygame.key.get_pressed()[pygame.K_c] or pygame.key.get_pressed()[pygame.K_DOWN]):
+        bullet_x = hero_x + 40
+        bullet_y = hero_y + 25
+        remember_x = hero_x + 40
+        press = True
+        delete_item = False
+        print("bullet")
 
-    for i in range(0, len(bullets_list)):
+    if press:
         if not move_bg_check:
-            bullets_list[i][0] += bullet_speed_norm
+            bullet_x += bullet_speed_norm
         else:
-            bullets_list[i][0] += bullet_speed_in_moving_bg
+            bullet_x += bullet_speed_in_moving_bg
 
-        if bullets_list[i][0] < bullets_list[i][2] + 250:
-            print(i)
-            screen.blit(bullet, (bullets_list[i][0], bullets_list[i][1]))
-            bullets_list[i][3] = bullet.get_rect(topleft=(bullets_list[i][0], bullets_list[i][1]))
+        if bullet_x < remember_x + 250 and not delete_item:
+            screen.blit(bullet, (bullet_x, bullet_y))
+            bullet_rect = bullet.get_rect(topleft=(bullet_x, bullet_y))
         else:
-            bullets_list.remove(i)
+            press = False
 
 def collidir_with_bullets():
-    global gameplay, bullets_list
+    global delete_item, delete_ghost2, delete_ghost1
 
-    for i in range(0, len(bullets_list)):
-        if ghost2_rect.colliderect(bullets_list[i][3]) or (bg_control > 2 and ghost1_rect.colliderect(bullets_list[i][3])):
-            bullets_list.remove(i)
-            gameplay = False
+    if press:
+        if ghost2_exist and ghost2_rect.colliderect(bullet_rect):
+            delete_item = True
+            delete_ghost2 = True
+        elif ghost1_exist and bg_control > 2 and ghost1_rect.colliderect(bullet_rect):
+            delete_item = True
+            delete_ghost1 = True
+
+# def collidir_with_bullets():
+#     global gameplay, bullets_list, delete_ghost1, delete_ghost2
+#
+#     delete_list = []
+#     for i in range(0, len(bullets_list)):
+#         if ghost2_exist and ghost2_rect.colliderect(bullets_list[i][3]):
+#             print("1")
+#             delete_list.append(i)
+#             delete_ghost2 = True
+#         elif ghost1_exist and bg_control > 2 and ghost1_rect.colliderect(bullets_list[i][3]):
+#             print("2")
+#             delete_list.append(i)
+#             delete_ghost1 = True
+#
+#     if len(delete_list) > 0:
+#         print(delete_list)
+#     delete_bullet(delete_list)
+
+# def delete_bullet(delete_list):
+#     global bullets_list
+#
+#     for i in range(0, len(delete_list)):
+#         print("delete")
+#         bullets_list.pop(delete_list[i])
 
 def changes_in_hero_anim_counter():  #approved
     global hero_anim_counter
@@ -154,7 +218,7 @@ def changes_in_hero_anim_counter():  #approved
         hero_anim_counter += 1
 
 def if_right():  #approved
-    global hero_x, bg_x, bg_control, bg_x2, hero_y, collidir_with_ground_tracker, move_bg_check
+    global hero_x, bg_x, bg_control, bg_x2, hero_y, collidir_with_ground_tracker, move_bg_check, delete_ghost2, delete_ghost1
     screen.blit(move_right[hero_anim_counter], (hero_x, hero_y))
     if hero_x < (scr_a // 2) or (bg_control > bg_max and hero_x < (scr_a - 30)):
         hero_x += hero_speed
@@ -167,6 +231,8 @@ def if_right():  #approved
         if bg_x <= - 2 * scr_a:
             bg_control += 1
             bg_x = 0
+            delete_ghost1 = False
+            delete_ghost2 = False
         elif bg_control <= bg_max:
             bg_x -= hero_speed
             bg_x2 -= hero_speed
@@ -206,7 +272,6 @@ def jump_checker():  #approved
             if jump_count >= -jump_y:
                 if jump_count > 0:
                     hero_y -= (jump_count ** 2) / 2
-                    print((jump_count ** 2) / 2)
                 else:
                     hero_y += (jump_count ** 2) / 2
                 jump_count -= 1
