@@ -25,7 +25,6 @@ ground = pygame.image.load('images/platform.png')
 ground_y = 250
 ground_x = 0
 collidir_with_ground_tracker = False
-# should_i_update = True
 check_fall = False
 
 hero_anim_counter = 0  # счетчик анимаций для цикла, чтобы показывать все картинки из списка беспрерывно
@@ -36,19 +35,11 @@ hero_x = 30
 hero_y = 190
 bg_control = 0
 bg_max = 6  #максимальное колличество итераций фона на уровне
-# anim_control = True
-# to_control_bg = True
 bg_x2 = - scr_a
 
-bonfire = pygame.image.load('images/bonfire/fire1.png')
+bonfire = pygame.image.load('images/fire1.png')
 bonfire_x = 0
-# bon1 = 300
-# bon2 = scr_a + 20
-# bon3 = scr_a * 2 + 200
-# bonfire_x1 = bon1
-# bonfire_x2 = bon2
-# bonfire_x3 = bon3
-# last_bonfire_list = []
+bonfire_rect: None
 
 ghost = pygame.image.load('images/enemy_ghost.png')
 ghost_x = 0
@@ -56,18 +47,30 @@ delete_ghost1 = False
 delete_ghost2 = False
 ghost1_exist = False
 ghost2_exist = False
+ghost1_y = 250 - 52 #198 #if 198>150: - elif 198 < 250: +
+ghost2_y = 130 - 52 #78
+ghost_police1 = True
+ghost_police2 = True
+
+boss = pygame.image.load('images/boss.png')
+boss_x = scr_a
+boss_speed = 2
+boss_life = 3
+boss_delete = False
+boss_rect = boss.get_rect(topleft=(-1000, -1000))
 
 bullet = pygame.image.load('images/weapon.png')
 bullet_speed_norm = 16 # скорость пули, если фон стабилен
 bullet_speed_in_moving_bg = bullet_speed_norm - hero_speed # скорость пули, если фон двигается
 move_bg_check = False
-bullets_list = []
+# bullets_list = []
 press = False
 bullet_x: None
 bullet_y: None
 remember_x: None
 bullet_rect: None
 delete_item = False
+bullet_stock = 6
 
 is_jump = False
 jump_y = 8
@@ -78,8 +81,6 @@ check_stop = False
 bg_sound = pygame.mixer.Sound('sounds/background.mp3')
 losing_sound = pygame.mixer.Sound('sounds/sound_for_losing.mp3')
 winning_sound = pygame.mixer.Sound('sounds/sound_for_winning.mp3')
-
-
 
 label = pygame.font.Font('fonts/beer-money12.ttf', 50)
 labelforwin = pygame.font.Font('fonts/gogoia-deco.ttf', 50)
