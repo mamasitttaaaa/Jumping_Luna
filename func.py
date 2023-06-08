@@ -4,7 +4,7 @@ from parameters import *
 
 def window_switcher():  #approved
     if gameplay:
-        bg_sound.play()
+        # bg_sound.play()
 
         screen_blit()
 
@@ -106,6 +106,7 @@ def ground_blit():
         stop_jump = False
         jump_count = jump_y
 
+    # падение для возвращения на нижнюю платформу
     if hero_x + 40 > ground_x + 100 * 4 + bg_x + scr_a and hero_x < ground_x + 100 * 4 + bg_x + scr_a + 100 and hero_y + 61 < 190 or\
         hero_x + 40 > ground_x + 100 * 6 + bg_x + scr_a and hero_x < ground_x + 100 * 6 + bg_x + scr_a + 100 and hero_y + 61 < 250:
         collidir_with_ground_tracker = True
@@ -353,12 +354,12 @@ def show_info_window():  #approved
     if bg_control > bg_max and hero_rect.colliderect(portal_rect):
         screen.fill((230, 168, 215))
         screen.blit(win_label, (50, 150))
-        winning_sound.play()
+        # winning_sound.play()
     else:
         screen.fill((0, 191, 255))
         screen.blit(lose_label, (300, 150))
         screen.blit(restart_label, restart_rect)
-        losing_sound.play()
+        # losing_sound.play()
 
         mouse = pygame.mouse.get_pos()
         if restart_rect.collidepoint(mouse) and pygame.mouse.get_pressed()[0]:
