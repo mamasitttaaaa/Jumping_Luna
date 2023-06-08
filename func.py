@@ -260,7 +260,8 @@ def collidir_with_boss():
 def bonfire_blit():
     global bonfire_rect
 
-    if bg_control < 2:
+    if bg_control < 1 or (bg_control == 1 and bg_x2 > - 800):
+        print(bg_x2, bg_control)
         screen.blit(bonfire, (bonfire_x + 100 + bg_x2 + scr_a, 250 - 47))
         bonfire_rect = bonfire.get_rect(topleft=(bonfire_x + 100 + bg_x2 + scr_a, 250 - 47))
     else:

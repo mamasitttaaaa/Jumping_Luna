@@ -53,8 +53,8 @@ ghost_police1 = True
 ghost_police2 = True
 
 boss = pygame.image.load('images/boss.png')
-boss_x = scr_a
-boss_speed = 2
+boss_x = scr_a - 50
+boss_speed = 3
 boss_life = 3
 boss_delete = False
 boss_rect = boss.get_rect(topleft=(-1000, -1000))
