@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da61ecb3-c0b9-42a7-b3f0-27b2049cbcca" name="Changes" comment="######">
+    <list default="true" id="da61ecb3-c0b9-42a7-b3f0-27b2049cbcca" name="Changes" comment="Some bags fixed 6">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/func.py" beforeDir="false" afterPath="$PROJECT_DIR$/func.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/parameters.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +45,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sounds" />
       <recent name="$PROJECT_DIR$/images" />
       <recent name="$PROJECT_DIR$/images/bonfire" />
       <recent name="$PROJECT_DIR$/images/Bonfire" />
@@ -141,7 +139,63 @@
       <option name="project" value="LOCAL" />
       <updated>1685541316872</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Bonfires added. Ghosts animated">
+      <created>1686244310682</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1686244310682</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Final changes">
+      <created>1686247377549</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1686247377549</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Some bags fixed">
+      <created>1686248290583</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1686248290583</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Some bags fixed 2">
+      <created>1686250367440</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1686250367440</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Some bags fixed 3">
+      <created>1686250488675</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1686250488675</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Some bags fixed 4">
+      <created>1686251051975</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1686251051975</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Some bags fixed 5">
+      <created>1686251090076</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1686251090076</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Some bags fixed 6">
+      <created>1686251986670</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1686251986670</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -164,6 +218,14 @@
     <MESSAGE value="Fix problem with hero animation" />
     <MESSAGE value="Bonfires added" />
     <MESSAGE value="Changes in bonfires" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes in bonfires" />
+    <MESSAGE value="Bonfires added. Ghosts animated" />
+    <MESSAGE value="Final changes" />
+    <MESSAGE value="Some bags fixed" />
+    <MESSAGE value="Some bags fixed 2" />
+    <MESSAGE value="Some bags fixed 3" />
+    <MESSAGE value="Some bags fixed 4" />
+    <MESSAGE value="Some bags fixed 5" />
+    <MESSAGE value="Some bags fixed 6" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some bags fixed 6" />
   </component>
 </project>
